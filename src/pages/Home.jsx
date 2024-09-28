@@ -9,6 +9,7 @@ const Home = () => {
   const dispatch = useDispatch()
   return (
     <div className='mx-auto text-center'>
+      <h1>home</h1>
       <h1>{num}</h1>
       <Button onClick={() => dispatch(increment(8))}>+</Button>
       <h1>{userName}</h1>
