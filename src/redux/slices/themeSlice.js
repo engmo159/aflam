@@ -6,7 +6,12 @@ const initialState = {
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
-  //   reducers: {},
+
+  reducers: {
+    changeTheme: state => {
+      state.theme == 'light' ? (state.theme = 'dark') : (state.theme = 'light')
+    },
+  },
 })
 export const themeReducer = themeSlice.reducer
-// export const {} = themeSlice.actions
+export const { changeTheme } = themeSlice.actions
