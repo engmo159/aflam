@@ -7,13 +7,11 @@ import Movies from './pages/Movies'
 import Tv from './pages/Tv'
 import Search from './pages/Search'
 
-
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
   return (
     <div
       className={`${
-
         theme === 'dark' ? 'bg-black text-white dark' : 'bg-white text-black'
       } min-h-screen font-sans`}
     >
@@ -24,14 +22,6 @@ const App = () => {
         <Route path='/tv' element={<Tv />} />
         <Route path='/search' element={<Search />} />
       </Routes>
-
-        theme === 'dark'
-          ? 'bg-blue-gray-900 text-white dark'
-          : 'bg-white text-black'
-      } min-h-screen font-sans`}
-    >
-     
-
     </div>
   )
 }
