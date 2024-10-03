@@ -1,4 +1,6 @@
+
 import Hero from '../components/Hero'
+
 
 const Movies = () => {
   return (
