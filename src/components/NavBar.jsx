@@ -101,7 +101,7 @@ const NavBar = () => {
 
   return (
     <Navbar
-      className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none fixed   ${
+      className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none z-50 fixed backdrop-saturate-100 ${
         navScrolled
           ? ' dark:bg-gray-900'
           : 'bg-transparent backdrop-blur-none shadow-none '

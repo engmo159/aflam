@@ -1,5 +1,13 @@
+
+import Hero from '../components/Hero'
+
+
 const Movies = () => {
-  return <div className='pt-16'>Ahmed</div>
+  return (
+    <div>
+      <Hero />
+    </div>
+  )
 }
 
 export default Movies
