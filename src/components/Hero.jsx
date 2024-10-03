@@ -32,14 +32,18 @@ const Hero = () => {
         slidesPerView={1}
         slidesPerGroup={1}
         autoplay={{
-          delay: 4000,
+
+          delay: 10000,
+
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
       >
-        {popularMovies.length > 0 &&
-          popularMovies.map((movie, index) => (
+
+        {popularMovies?.length > 0 &&
+          popularMovies?.map((movie, index) => (
+
             <SwiperSlide key={index} className='relative h-full w-full'>
               <div
                 className='h-full w-full bg-center bg-no-repeat flex items-center justify-center'
@@ -77,14 +81,15 @@ const Hero = () => {
                       )
                       .splice(0, 2)
                       .map((genreName, index) => (
-                        <div key={index}>
-                          <p
-                            color='red'
-                            className='text-sm font-normal bg-red-800 p-2 rounded-xl'
-                          >
-                            {genreName || ''}
-                          </p>
-                        </div>
+
+                        <p
+                          key={index}
+                          color='red'
+                          className='text-sm font-normal bg-red-800 p-2 rounded-xl'
+                        >
+                          {genreName || ''}
+                        </p>
+
                       ))}
                   </div>
                 </div>
