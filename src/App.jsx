@@ -8,6 +8,7 @@ import Search from './pages/Search'
 
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
+
   return (
     <div
       className={`${
