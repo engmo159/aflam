@@ -1,5 +1,7 @@
+
 import Hero from "../components/Hero";
 import MoviesSection from "../components/Movies/MoviesSection";
+
 
 const Movies = () => {
   return (
