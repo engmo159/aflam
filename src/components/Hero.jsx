@@ -13,9 +13,14 @@ import { Button } from "@material-tailwind/react";
 import { BiSolidRightArrow } from "react-icons/bi";
 
 const Hero = () => {
+  const dispatch = useDispatch()
   const { popularMovies, genreMovieList } = useSelector(
     (state) => state.moviesReducer
   );
+  useEffect(() => {
+    dispatch(getPopularMovies());
+    dispatch(getGenreMoviesList());
+  }, [dispatch]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
