@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Button, Typography } from "@material-tailwind/react";
+
+import { Button } from "@material-tailwind/react";
+
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
 import { FadeLoader } from "react-spinners";
