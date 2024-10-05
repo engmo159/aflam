@@ -14,17 +14,15 @@ import { BiSolidRightArrow } from "react-icons/bi";
 
 const Hero = () => {
   const dispatch = useDispatch();
-  const { popularMovies, genreMovieList, popularMoviesPage } = useSelector(
+  const { popularMovies, genreMovieList } = useSelector(
     (state) => state.moviesReducer
   );
-
   useEffect(() => {
-    dispatch(getPopularMovies(popularMoviesPage));
     dispatch(getGenreMoviesList());
-  }, [popularMoviesPage]);
+  }, [dispatch]);
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
       <Swiper
         grabCursor={true}
         loop={true}
