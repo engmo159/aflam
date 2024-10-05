@@ -5,26 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-// import required modules
 import { Pagination } from 'swiper/modules'
-import { useEffect } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { getPopularMovies } from '../redux/slices/moviesSlice'
-const SwiperLayout = () => {
-  const dispatch = useDispatch()
-  const { popularMovies, popularMoviesErr } = useSelector(
-    state => state.moviesReducer
-  )
-
-  useEffect(() => {
-    dispatch(getPopularMovies())
-  }, [])
-
+const SwiperLayout = ({ media, header }) => {
   return (
-    <div className='flex flex-col gap-8 p-12 h-full overflow-hidden'>
+    <div className='flex flex-col gap-8 px-12 py-4 h-full overflow-hidden'>
       <div>
-        <h1 className='font-bold text-3xl'>Popular Movies</h1>
+        <h1 className='font-bold text-3xl'>{header}</h1>
       </div>
       <div className='w-full h-full'>
         <Swiper
@@ -38,9 +25,8 @@ const SwiperLayout = () => {
           modules={[Pagination]}
           className='mySwiper'
         >
-          {popularMovies?.map((movie, index) => (
+          {media?.map((movie, index) => (
             <div key={index}>
-              movie&&
               <SwiperSlide>
                 <div>
                   <MovieCard movie={movie} />

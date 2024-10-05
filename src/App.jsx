@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Tv from './pages/Tv'
 import Search from './pages/Search'
+import Footer from './components/Footer'
 
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/tv' element={<Tv />} />
         <Route path='/search' element={<Search />} />
       </Routes>
+      <Footer />
     </div>
   )
 }

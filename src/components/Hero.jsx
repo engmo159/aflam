@@ -47,7 +47,7 @@ const Hero = () => {
                 style={{
                   backgroundImage: `url(${
                     import.meta.env.VITE_BASE_TMDB_POSTER_PATH
-                  }${movie?.poster_path || movie?.backdrop_path})`,
+                  }${movie?.backdrop_path || movie?.poster_path})`,
                   backgroundSize: '100% 100%',
                 }}
               />
