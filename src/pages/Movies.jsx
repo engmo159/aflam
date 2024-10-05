@@ -10,12 +10,14 @@ const Movies = () => {
     state => state.moviesReducer
   )
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(changePageLoading(true))
   }, [])
   if (pageLoading) {
     return <Loading load={popularMoviesLoading} />
   }
+
   return (
     <div>
       <Hero />
