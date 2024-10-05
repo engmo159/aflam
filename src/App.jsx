@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
+
   return (
     <div
       className={`${
