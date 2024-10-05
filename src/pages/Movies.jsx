@@ -1,13 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import Hero from "../components/Hero";
-import MoviesSection from "../components/Movies/MoviesSection";
-import Loading from "../components/Loading";
-import { useEffect } from "react";
-import { loadingFinish } from "../redux/slices/moviesSlice";
+import { useSelector } from 'react-redux'
+import Hero from '../components/Hero'
+import MoviesSection from '../components/Movies/MoviesSection'
+import Loading from '../components/Loading'
 
 const Movies = () => {
-
-  const { pageLoading } = useSelector((state) => state.moviesReducer);
+  const { pageLoading } = useSelector(state => state.moviesReducer)
 
   return (
     <div>
@@ -20,7 +17,7 @@ const Movies = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Movies;
+export default Movies
