@@ -10,8 +10,8 @@ import { Link, NavLink } from 'react-router-dom'
 import { PiSunBold } from 'react-icons/pi'
 import { MdNightlightRound } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeTheme } from '../redux/slices/themeSlice'
-import Signin from './Signin'
+import { changeTheme } from '../../redux/slices/themeSlice'
+import SignLayout from './SignLayout'
 
 const NavBar = () => {
   const [openNav, setOpenNav] = useState(false)
@@ -125,7 +125,7 @@ const NavBar = () => {
           <div className='flex items-center gap-x-1'>
             <Button
               variant='gradient'
-              size='md'
+              size='sm'
               className='hidden lg:inline-block tracking-wider text-white text-md'
               color='red'
               onClick={() => setShowSignInModal(true)}
@@ -185,7 +185,7 @@ const NavBar = () => {
           </div>
         </Collapse>
       </Navbar>
-      <Signin
+      <SignLayout
         showSignInModal={showSignInModal}
         setShowSignInModal={setShowSignInModal}
       />
