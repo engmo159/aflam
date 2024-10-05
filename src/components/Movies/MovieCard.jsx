@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import { FaPlay } from 'react-icons/fa'
 import RadialRatingBar from './RadialRatingBar'
 
-const MovieCard = ({ movie, hight = '30rem' }) => {
+const MovieCard = ({ movie }) => {
   return (
     <div
       style={{
         '--image-url': `url(https://image.tmdb.org/t/p/w500${movie?.poster_path})`,
       }}
-      className={`h-[${hight}] bg-[image:var(--image-url)] bg-center bg-cover group`}
+      className={`h-[30rem] bg-[image:var(--image-url)] bg-center bg-cover group`}
     >
       <Link>
         <div className='opacity-0 group-hover:opacity-100 group-hover:duration-500 space-x-2 ease-linear transition flex flex-col justify-center items-center align-middle h-full bg-gradient-to-t from-black to-transparent p-6 '>
