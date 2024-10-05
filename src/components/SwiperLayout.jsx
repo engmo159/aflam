@@ -21,14 +21,10 @@ const SwiperLayout = () => {
     dispatch(getPopularMovies())
   }, [])
 
-  if (popularMoviesErr) {
-    return <h1>{popularMoviesErr}</h1>
-  }
-
   return (
-    <div className='flex flex-col gap-12 mx-4 overflow-hidden'>
+    <div className='flex flex-col gap-8 p-12 h-full overflow-hidden'>
       <div>
-        <h1 className='font-bold text-xl'>Popular Movies</h1>
+        <h1 className='font-bold text-3xl'>Popular Movies</h1>
       </div>
       <div className='w-full h-full'>
         <Swiper
@@ -36,9 +32,9 @@ const SwiperLayout = () => {
           centeredSlides={false}
           spaceBetween={0}
           grabCursor={true}
-          pagination={{
-            clickable: true,
-          }}
+          // pagination={{
+          //   clickable: true,
+          // }}
           modules={[Pagination]}
           className='mySwiper'
         >
@@ -46,7 +42,9 @@ const SwiperLayout = () => {
             <div key={index}>
               movie&&
               <SwiperSlide>
-                <MovieCard movie={movie} />
+                <div>
+                  <MovieCard movie={movie} />
+                </div>
               </SwiperSlide>
             </div>
           ))}
