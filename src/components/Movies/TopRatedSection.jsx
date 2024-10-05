@@ -3,8 +3,11 @@ import { Button, Typography } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 
 import MovieCard from "./MovieCard";
-import { FadeLoader } from "react-spinners";
-import { getTopRatedMovies, topRatedLoadMore } from "../../redux/slices/moviesSlice";
+import { BarLoader } from "react-spinners";
+import {
+  getTopRatedMovies,
+  topRatedLoadMore,
+} from "../../redux/slices/moviesSlice";
 
 const TopRatedSection = () => {
   const dispatch = useDispatch();
@@ -26,23 +29,20 @@ const TopRatedSection = () => {
 
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2  items-center justify-center place-content-center">
-      {topRatedMoviesLoading && (
-        <div className="w-full h-full col-start-3 mt-96">
-          <FadeLoader />
-        </div>
-      )}
       {topRatedMovies?.slice(0, topRatedMoviesVisible)?.map((movie, index) => (
         <div key={index}>
           <MovieCard movie={movie} />
         </div>
       ))}
-      {!topRatedMoviesLoading && (
-        <Button
-          onClick={() => dispatch(topRatedLoadMore())}
-          className="col-span-4 bg-transparent shadow-none text-red-600 text-md hover:shadow-none hover:bg-red-50 rounded-sm font-bold">
-          LOAD MORE
-        </Button>
-      )}
+      <Button
+        onClick={() => dispatch(topRatedLoadMore())}
+        className="flex justify-center col-span-4 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
+        {topRatedMoviesLoading ? (
+          <BarLoader color="red" className="my-2.5" />
+        ) : (
+          "LOAD MORE"
+        )}
+      </Button>
     </div>
   );
 };
