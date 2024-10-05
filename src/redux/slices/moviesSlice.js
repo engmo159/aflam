@@ -77,6 +77,7 @@ const initialState = {
   genreMovieList: [],
   genreLoading: true,
   genreErr: null,
+  pageLoading: true,
 };
 const MoviesSlice = createSlice({
   name: "movies",
@@ -95,6 +96,9 @@ const MoviesSlice = createSlice({
     topRatedLoadMore: (state) => {
       state.topRatedMoviesVisible += 20;
       state.topRatedMoviesPage += 1;
+    },
+    loadingFinish: (state, { payload }) => {
+      state.pageLoading = payload;
     },
   },
   extraReducers: (builder) => {
@@ -150,4 +154,5 @@ export const {
   changeToTopRated,
   popularLoadMore,
   topRatedLoadMore,
+  loadingFinish,
 } = MoviesSlice.actions;
