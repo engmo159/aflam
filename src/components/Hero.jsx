@@ -24,7 +24,7 @@ const Hero = () => {
   }, [popularMoviesPage])
 
   return (
-    <div className='relative w-screen h-screen overflow-hidden'>
+    <div className='relative h-screen overflow-hidden'>
       <Swiper
         grabCursor={true}
         loop={true}
