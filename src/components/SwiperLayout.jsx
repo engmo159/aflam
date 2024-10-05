@@ -1,10 +1,7 @@
 import MovieCard from './Movies/MovieCard'
-
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import 'swiper/css'
 import 'swiper/css/pagination'
-
 import { Pagination } from 'swiper/modules'
 
 const SwiperLayout = ({ media, header }) => {
@@ -26,13 +23,11 @@ const SwiperLayout = ({ media, header }) => {
           className='mySwiper'
         >
           {media?.map((movie, index) => (
-            <div key={index}>
-              <SwiperSlide>
-                <div>
-                  <MovieCard movie={movie} />
-                </div>
-              </SwiperSlide>
-            </div>
+            <SwiperSlide key={index}>
+              <div>
+                <MovieCard movie={movie} />
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>
