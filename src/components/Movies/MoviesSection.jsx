@@ -22,11 +22,9 @@ const MoviesSection = () => {
             variant="text"
             className={`${
               isItPopular
-                ? `bg-red-600 text-white hover:bg-red-700`
-                : ` ${
-                    theme === "dark" ? `text-white` : `text-black`
-                  } bg-transparent  hover:bg-red-100`
-            }`}
+                ? `text-white bg-red-600 hover:bg-red-700`
+                : `bg-transparent  text-black dark:text-white`
+            } text-sm `}
             onClick={() => dispatch(changeToPopular())}>
             Popular
           </Button>
@@ -34,11 +32,9 @@ const MoviesSection = () => {
             variant="text"
             className={`${
               !isItPopular
-                ? `bg-red-600 text-white hover:bg-red-700`
-                : `${
-                    theme === "dark" ? `text-white` : `text-black`
-                  } bg-transparent hover:bg-red-100`
-            }`}
+                ? `text-white bg-red-600 hover:bg-red-700`
+                : `bg-transparent  text-black dark:text-white`
+            } text-sm`}
             onClick={() => dispatch(changeToTopRated())}>
             Top Rated
           </Button>

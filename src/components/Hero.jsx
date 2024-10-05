@@ -14,14 +14,14 @@ import { BiSolidRightArrow } from 'react-icons/bi'
 
 const Hero = () => {
   const dispatch = useDispatch()
-  const { popularMovies, genreMovieList } = useSelector(
+  const { popularMovies, genreMovieList, popularMoviesPage } = useSelector(
     state => state.moviesReducer
   )
-  console.log(genreMovieList, popularMovies)
+
   useEffect(() => {
-    dispatch(getPopularMovies())
+    dispatch(getPopularMovies(popularMoviesPage))
     dispatch(getGenreMoviesList())
-  }, [dispatch])
+  }, [popularMoviesPage])
 
   return (
     <div className='relative w-screen h-screen overflow-hidden'>
