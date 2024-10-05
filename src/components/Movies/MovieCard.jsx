@@ -22,10 +22,10 @@ const MovieCard = ({ movie }) => {
           <div className='flex flex-col w-full items-start'>
             <RadialRatingBar movie={movie} />
             <Typography variant='lead' color='white'>
-              {movie?.release_date?.substr(0, 4)}
+              {movie?.release_date?.substr(0, 4) || ''}
             </Typography>
             <Typography variant='h5' color='white'>
-              {movie?.title}
+              {movie?.title || ''}
             </Typography>
           </div>
         </div>

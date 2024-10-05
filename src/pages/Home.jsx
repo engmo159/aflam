@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  changePageLoading,
   getPopularMovies,
   getTopRatedMovies,
 } from '../redux/slices/moviesSlice'
@@ -18,29 +19,35 @@ const Home = () => {
   const { popularSeries, topRatedSeries } = useSelector(
     state => state.seriesReducer
   )
-  const { pageLoading, popularMovies, topRatedMovies } = useSelector(
-    state => state.moviesReducer
-  )
-
+  const { pageLoading, popularMovies, topRatedMovies, popularMoviesLoading } =
+    useSelector(state => state.moviesReducer)
   useEffect(() => {
-    dispatch(getPopularMovies())
-    dispatch(getTopRatedMovies())
-    dispatch(getTopRatedSeries())
-    dispatch(getPopularSeries())
+    const fetchData = async () => {
+      dispatch(changePageLoading(true))
+      await Promise.all([
+        dispatch(getTopRatedMovies()),
+        dispatch(getPopularMovies()),
+        dispatch(getTopRatedSeries()),
+        dispatch(getPopularSeries()),
+      ])
+      dispatch(changePageLoading(false))
+    }
+
+    fetchData()
   }, [])
+  useEffect(() => {
+    dispatch(changePageLoading(true))
+  }, [])
+  if (pageLoading) {
+    return <Loading load={popularMoviesLoading} />
+  }
   return (
     <div>
-      {pageLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <Hero />
-          <SwiperLayout media={popularMovies} header='Popular Movies' />
-          <SwiperLayout media={popularSeries} header='Popular Series' />
-          <SwiperLayout media={topRatedMovies} header='Top Rated Movies' />
-          <SwiperLayout media={topRatedSeries} header='Top Rated Series' />
-        </>
-      )}
+      <Hero />
+      <SwiperLayout media={popularMovies} header='Popular Movies' />
+      <SwiperLayout media={popularSeries} header='Popular Series' />
+      <SwiperLayout media={topRatedMovies} header='Top Rated Movies' />
+      <SwiperLayout media={topRatedSeries} header='Top Rated Series' />
     </div>
   )
 }

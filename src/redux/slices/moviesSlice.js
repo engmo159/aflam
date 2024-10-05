@@ -1,70 +1,70 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const api = (mediaCategory, page) => {
   return {
-    method: "GET",
+    method: 'GET',
     url: `${import.meta.env.VITE_BASE_TMDB_URL}/movie/${mediaCategory}`,
-    params: { language: "en-US", page },
+    params: { language: 'en-US', page },
     headers: {
-      accept: "application/json",
+      accept: 'application/json',
       Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
     },
-  };
-};
+  }
+}
 const genreApi = () => {
   return {
-    method: "GET",
+    method: 'GET',
     url: `${import.meta.env.VITE_BASE_TMDB_URL}/genre/movie/list`,
-    params: { language: "en" },
+    params: { language: 'en' },
     headers: {
-      accept: "application/json",
+      accept: 'application/json',
       Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
     },
-  };
-};
+  }
+}
 export const getPopularMovies = createAsyncThunk(
-  "/getPopularMovies",
+  '/getPopularMovies',
   async (page, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue } = thunkAPI
     try {
-      const { data } = await axios.request(api("popular", page));
-      return data;
+      const { data } = await axios.request(api('popular', page))
+      return data
     } catch (e) {
-      return rejectWithValue(e);
+      return rejectWithValue(e)
     }
   }
-);
+)
 
 export const getTopRatedMovies = createAsyncThunk(
-  "/getTopRatedMovies",
+  '/getTopRatedMovies',
   async (page, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue } = thunkAPI
     try {
-      const { data } = await axios.request(api("top_rated", page));
-      return data;
+      const { data } = await axios.request(api('top_rated', page))
+      return data
     } catch (e) {
-      return rejectWithValue(e);
+      return rejectWithValue(e)
     }
   }
-);
+)
 
 export const getGenreMoviesList = createAsyncThunk(
-  "/getGenreMoviesList",
+  '/getGenreMoviesList',
   async (id, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue } = thunkAPI
     try {
-      const { data } = await axios.request(genreApi());
-      return data;
+      const { data } = await axios.request(genreApi())
+      return data
     } catch (e) {
-      return rejectWithValue(e);
+      return rejectWithValue(e)
     }
   }
-);
+)
 
 const initialState = {
   popularMovies: [],
-  popularMoviesLoading: true,
+  popularMoviesLoading: false,
   popularMoviesErr: null,
   topRatedMovies: [],
   topRatedMoviesLoading: true,
@@ -78,81 +78,78 @@ const initialState = {
   genreLoading: true,
   genreErr: null,
   pageLoading: true,
-};
+}
 const MoviesSlice = createSlice({
-  name: "movies",
+  name: 'movies',
   initialState,
   reducers: {
-    changeToPopular: (state) => {
-      state.isItPopular = true;
+    changeToPopular: state => {
+      state.isItPopular = true
     },
-    changeToTopRated: (state) => {
-      state.isItPopular = false;
+    changeToTopRated: state => {
+      state.isItPopular = false
     },
-    popularLoadMore: (state) => {
-      state.popularMoviesVisible += 20;
-      state.popularMoviesPage += 1;
+    popularLoadMore: state => {
+      state.popularMoviesVisible += 20
+      state.popularMoviesPage += 1
     },
-    topRatedLoadMore: (state) => {
-      state.topRatedMoviesVisible += 20;
-      state.topRatedMoviesPage += 1;
+    topRatedLoadMore: state => {
+      state.topRatedMoviesVisible += 20
+      state.topRatedMoviesPage += 1
     },
-    loadingFinish: (state, { payload }) => {
-      state.pageLoading = payload;
+    changePageLoading: (state, action) => {
+      state.pageLoading = action.payload
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     // get popular movies
-    builder.addCase(getPopularMovies.pending, (state) => {
-      state.popularMoviesLoading = true;
-    });
+    builder.addCase(getPopularMovies.pending, state => {
+      state.popularMoviesLoading = true
+    })
     builder.addCase(getPopularMovies.fulfilled, (state, { payload }) => {
-      state.popularMoviesLoading = false;
-      state.popularMovies = state.popularMovies.concat(payload.results);
-    });
+      state.popularMoviesLoading = false
+      state.popularMovies = state.popularMovies.concat(payload.results)
+    })
 
     builder.addCase(getPopularMovies.rejected, (state, action) => {
-      state.popularMoviesLoading = false;
-      state.popularMoviesErr =
-        action.payload?.message || "something went error";
-    });
+      state.popularMoviesLoading = false
+      state.popularMoviesErr = action.payload?.message || 'something went error'
+    })
 
     // get top rated movies
-    builder.addCase(getTopRatedMovies.pending, (state) => {
-      state.topRatedMoviesLoading = true;
-    });
+    builder.addCase(getTopRatedMovies.pending, state => {
+      state.topRatedMoviesLoading = true
+    })
     builder.addCase(getTopRatedMovies.fulfilled, (state, action) => {
-      state.topRatedMoviesLoading = false;
-      state.topRatedMovies = state.topRatedMovies.concat(
-        action.payload.results
-      );
-    });
+      state.topRatedMoviesLoading = false
+      state.topRatedMovies = state.topRatedMovies.concat(action.payload.results)
+    })
     builder.addCase(getTopRatedMovies.rejected, (state, action) => {
-      state.topRatedMoviesLoading = false;
+      state.topRatedMoviesLoading = false
       state.topRatedMoviesErr =
-        action.payload?.message || "something went error";
-    });
+        action.payload?.message || 'something went error'
+    })
 
     // get genre list movies
-    builder.addCase(getGenreMoviesList.pending, (state) => {
-      state.genreLoading = true;
-    });
+    builder.addCase(getGenreMoviesList.pending, state => {
+      state.genreLoading = true
+    })
     builder.addCase(getGenreMoviesList.fulfilled, (state, action) => {
-      state.genreLoading = false;
-      state.genreMovieList = action.payload.genres;
-    });
+      state.genreLoading = false
+      state.genreMovieList = action.payload.genres
+    })
 
     builder.addCase(getGenreMoviesList.rejected, (state, action) => {
-      state.genreLoading = false;
-      state.genreErr = action.payload?.message || "something went error";
-    });
+      state.genreLoading = false
+      state.genreErr = action.payload?.message || 'something went error'
+    })
   },
-});
-export const moviesReducer = MoviesSlice.reducer;
+})
+export const moviesReducer = MoviesSlice.reducer
 export const {
   changeToPopular,
   changeToTopRated,
   popularLoadMore,
   topRatedLoadMore,
-  loadingFinish,
-} = MoviesSlice.actions;
+  changePageLoading,
+} = MoviesSlice.actions
