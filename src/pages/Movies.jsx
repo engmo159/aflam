@@ -11,9 +11,13 @@ const Movies = () => {
   )
   const dispatch = useDispatch()
 
-  // if (pageLoading) {
-  //   return <Loading load={popularMoviesLoading} />
-  // }
+  useEffect(() => {
+    dispatch(changePageLoading(true))
+  }, [])
+  if (pageLoading) {
+    return <Loading load={popularMoviesLoading} />
+  }
+
   return (
     <div>
       <Hero />
