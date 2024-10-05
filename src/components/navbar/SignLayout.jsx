@@ -1,7 +1,7 @@
 import { Card, Typography } from '@material-tailwind/react'
 import PropTypes from 'prop-types'
 import SignUp from './SignUp'
-import SignIn from './Signin'
+import SignIn from './SignIn'
 import { useState } from 'react'
 const SignLayout = ({ showSignInModal, setShowSignInModal }) => {
   // sign in overlay function
