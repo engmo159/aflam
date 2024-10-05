@@ -1,3 +1,4 @@
+
 import Hero from "../components/Hero";
 import { useSelector } from "react-redux";
 import SwiperLayout from "../components/SwiperLayout";
@@ -15,7 +16,9 @@ const Home = () => {
           <Hero />
           <SwiperLayout />
         </div>
+
       )}
+
     </div>
   );
 };
