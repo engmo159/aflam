@@ -1,12 +1,26 @@
-import { useEffect } from "react";
+
 import Hero from "../components/Hero";
-import { useDispatch, useSelector } from "react-redux";
-import { loadingFinish } from "../redux/slices/moviesSlice";
+import {  useSelector } from "react-redux";
+import SwiperLayout from '../components/SwiperLayout'
 import Loading from "../components/Loading";
 
 const Home = () => {
   const { pageLoading } = useSelector((state) => state.moviesReducer);
 
-  return <div>{pageLoading ? <Loading /> : <Hero />} </div>;
+
+const Home = () => {
+
+  return (
+    <div>
+      {pageLoading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Hero />
+          <SwiperLayout />
+        </div>
+      )}{" "}
+    </div>
+  );
 };
 export default Home;

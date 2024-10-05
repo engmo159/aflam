@@ -13,6 +13,7 @@ import { Button } from "@material-tailwind/react";
 import { BiSolidRightArrow } from "react-icons/bi";
 
 const Hero = () => {
+
   const dispatch = useDispatch();
   const { popularMovies, genreMovieList } = useSelector(
     (state) => state.moviesReducer
@@ -23,6 +24,7 @@ const Hero = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
+
       <Swiper
         grabCursor={true}
         loop={true}
