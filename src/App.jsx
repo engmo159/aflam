@@ -1,27 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import NavBar from "./components/navbar/NavBar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import Tv from "./pages/Tv";
 import Search from "./pages/Search";
-import { useEffect } from "react";
-import { getPopularMovies, loadingFinish } from "./redux/slices/moviesSlice";
+import Footer from "./components/Footer";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const { popularMoviesPage } = useSelector((state) => state.moviesReducer);
   const { theme } = useSelector((state) => state.themeReducer);
-  useEffect(() => {
-    dispatch(getPopularMovies(popularMoviesPage));
-  }, [popularMoviesPage]);
-
-  
 
   return (
     <div
       className={`${
-        theme === "dark" ? "bg-black text-white dark" : "bg-white text-black"
+        theme === "dark"
+          ? "bg-black text-white dark"
+          : "bg-[#f5f5f5] text-black"
       } min-h-screen font-sans`}>
       <NavBar />
       <Routes>
@@ -30,6 +24,7 @@ const App = () => {
         <Route path="/tv" element={<Tv />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

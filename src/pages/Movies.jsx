@@ -1,24 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
 import Hero from "../components/Hero";
-import MoviesSection from "../components/Movies/MoviesSection";
+import MoviesSection from "../components/movies/MoviesSection";
 import Loading from "../components/Loading";
 import { useEffect } from "react";
-import { loadingFinish } from "../redux/slices/moviesSlice";
+import {
+  changePageLoading,
+  getPopularMovies,
+} from "../redux/slices/moviesSlice";
 
 const Movies = () => {
+  const {
+    pageLoading,
+    popularMoviesLoading,
+    genreMovieList,
+    popularMovies,
+    popularMoviesPage,
+  } = useSelector((state) => state.moviesReducer);
+  const dispatch = useDispatch();
 
-  const { pageLoading } = useSelector((state) => state.moviesReducer);
+  useEffect(() => {
+    dispatch(changePageLoading(true));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getPopularMovies(popularMoviesPage));
+  }, [popularMoviesPage]);
+
+  if (pageLoading) {
+    return <Loading load={popularMoviesLoading} />;
+  }
 
   return (
     <div>
-      {pageLoading ? (
-        <Loading />
-      ) : (
-        <div>
-          <Hero />
-          <MoviesSection />
-        </div>
-      )}
+      <Hero displayedItems={popularMovies} genre={genreMovieList} />
+      <MoviesSection />
     </div>
   );
 };

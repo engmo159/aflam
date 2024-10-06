@@ -1,32 +1,17 @@
-import MovieCard from './Movies/MovieCard'
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import MovieCard from "./movies/MovieCard";
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
-
-// import required modules
-import { Pagination } from 'swiper/modules'
-import { useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { getPopularMovies } from '../redux/slices/moviesSlice'
-const SwiperLayout = () => {
-  const dispatch = useDispatch()
-  const { popularMovies, popularMoviesErr } = useSelector(
-    state => state.moviesReducer
-  )
-
-  useEffect(() => {
-    dispatch(getPopularMovies())
-  }, [])
-
+const SwiperLayout = ({ media, header }) => {
   return (
-    <div className='flex flex-col gap-8 p-12 h-full overflow-hidden'>
-      <div>
-        <h1 className='font-bold text-3xl'>Popular Movies</h1>
+    <div className="flex flex-col gap-8 px-20 py-10 h-full overflow-hidden">
+      <div className="flex flex-col gap-1 ">
+        <h1 className="font-bold text-3xl">{header}</h1>
+        <hr className="w-28 border-[3px] border-red-600 " />
       </div>
-      <div className='w-full h-full'>
+      <div className="w-full h-full">
         <Swiper
           slidesPerView={4}
           centeredSlides={false}
@@ -36,22 +21,18 @@ const SwiperLayout = () => {
           //   clickable: true,
           // }}
           modules={[Pagination]}
-          className='mySwiper'
-        >
-          {popularMovies?.map((movie, index) => (
-            <div key={index}>
-              movie&&
-              <SwiperSlide>
-                <div>
-                  <MovieCard movie={movie} />
-                </div>
-              </SwiperSlide>
-            </div>
+          className="mySwiper">
+          {media?.map((movie, index) => (
+            <SwiperSlide key={index}>
+              <div>
+                <MovieCard movie={movie} />
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SwiperLayout
+export default SwiperLayout;

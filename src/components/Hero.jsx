@@ -1,9 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getGenreMoviesList,
-  getPopularMovies,
-} from "../redux/slices/moviesSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -12,19 +6,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { Button } from "@material-tailwind/react";
 import { BiSolidRightArrow } from "react-icons/bi";
 
-const Hero = () => {
-
-  const dispatch = useDispatch();
-  const { popularMovies, genreMovieList } = useSelector(
-    (state) => state.moviesReducer
-  );
-  useEffect(() => {
-    dispatch(getGenreMoviesList());
-  }, [dispatch]);
-
+const Hero = ({ displayedItems, genre }) => {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-
+    <div className="relative h-screen overflow-hidden">
       <Swiper
         grabCursor={true}
         loop={true}
@@ -38,8 +22,8 @@ const Hero = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}>
-        {popularMovies?.length > 0 &&
-          popularMovies?.map((movie, index) => (
+        {displayedItems?.length > 0 &&
+          displayedItems?.map((movie, index) => (
             <SwiperSlide key={index} className="relative h-full w-full">
               <div
                 className="h-full w-full bg-center bg-no-repeat flex items-center justify-center"
@@ -50,10 +34,10 @@ const Hero = () => {
                   backgroundSize: "cover",
                 }}
               />
-              <div className="z-50 absolute inset-0 flex flex-col justify-center pl-[10%] w-1/2 gap-8">
+              <div className="z-50 absolute inset-0 flex flex-col justify-center pl-[10%] w-1/2 gap-10">
                 {/* title  */}
-                <h1 className=" text-white text-6xl font-bold">
-                  {movie?.title}
+                <h1 className=" text-white text-7xl font-bold">
+                  {movie?.title || movie?.name}
                 </h1>
                 <div className="flex gap-4 items-center">
                   {/* rate */}
@@ -72,8 +56,7 @@ const Hero = () => {
                   <div className="flex gap-2">
                     {movie.genre_ids
                       .map(
-                        (genreId) =>
-                          genreMovieList?.find((g) => g.id === genreId)?.name
+                        (genreId) => genre?.find((g) => g.id === genreId)?.name
                       )
                       .splice(0, 2)
                       .map((genreName, index) => (
