@@ -6,7 +6,7 @@ import {
   getTopRatedSeries,
   topRatedSeriesLoadMore,
 } from "../../redux/slices/seriesSlice";
-import MovieCard from "../movies/MovieCard";
+import MovieCard from "../Movies/MovieCard";
 
 const SeriesTopRatedSection = () => {
   const dispatch = useDispatch();

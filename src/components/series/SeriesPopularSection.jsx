@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { BarLoader } from "react-spinners";
-import MovieCard from "../movies/MovieCard";
+import MovieCard from "../Movies/MovieCard";
 import { popularSeriesLoadMore } from "../../redux/slices/seriesSlice";
 
 const SeriesPopularSection = () => {
