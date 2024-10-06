@@ -6,7 +6,7 @@ import {
   changePageLoading,
   getPopularMovies,
 } from "../redux/slices/moviesSlice";
-import MoviesSection from "../components/movies/MoviesSection";
+import MoviesSection from "../components/Movies/MoviesSection";
 
 const Movies = () => {
   const {
