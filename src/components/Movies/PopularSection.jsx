@@ -5,6 +5,7 @@ import { BarLoader } from "react-spinners";
 import { popularLoadMore } from "../../redux/slices/moviesSlice";
 import MovieCard from "./MovieCard";
 
+
 const PopularSection = () => {
   const dispatch = useDispatch();
   const {
