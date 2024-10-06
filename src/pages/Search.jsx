@@ -66,6 +66,7 @@ const Search = () => {
           label={`Search Your Favorite ${mediaType}`}
           autoFocus
           className='!text-4xl py-8'
+
           onChange={e => handleInputChange(e.target.value)}
           value={query}
         />
