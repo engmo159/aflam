@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import Hero from "../components/Hero";
-import MoviesSection from "../components/movies/MoviesSection";
 import Loading from "../components/Loading";
 import { useEffect } from "react";
 import {
   changePageLoading,
   getPopularMovies,
 } from "../redux/slices/moviesSlice";
+import MoviesSection from "../components/movies/MoviesSection";
 
 const Movies = () => {
   const {
