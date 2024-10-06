@@ -65,7 +65,9 @@ const Search = () => {
           color='teal'
           label={`Search Your Favorite ${mediaType}`}
           autoFocus
+
           className='text-base'
+
           onChange={e => handleInputChange(e.target.value)}
           value={query}
         />
