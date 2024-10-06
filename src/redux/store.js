@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import { themeReducer } from './slices/themeSlice'
 import { moviesReducer } from './slices/moviesSlice'
 import { seriesReducer } from './slices/seriesSlice'
+import { searchReducer } from './slices/searchSlice'
 
 //persist reducer config
 const persistConfig = {
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   themeReducer,
   moviesReducer,
   seriesReducer,
+  searchReducer,
 })
 // default reducer + persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
