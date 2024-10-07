@@ -14,16 +14,16 @@ const SeriesSection = () => {
 
   return (
     <section className="px-14 py-10 flex flex-col gap-4">
-      <div className="flex justify-between">
+      <div className="flex lg:flex-row md:flex-row gap-8 flex-col justify-between items-center">
         <Typography variant="h4">TV Series</Typography>
-        <div className="flex gap-2">
+        <div className="flex lg:flex-row md:flex-row flex-col gap-4">
           <Button
             variant="text"
             className={`${
               seriesIsItPopular
                 ? `text-white bg-red-600 hover:bg-red-700`
                 : `bg-transparent  text-black dark:text-white`
-            } text-sm `}
+            } text-sm w-fit`}
             onClick={() => dispatch(seriesChangeToPopular())}>
             Popular
           </Button>
@@ -33,7 +33,7 @@ const SeriesSection = () => {
               !seriesIsItPopular
                 ? `text-white bg-red-600 hover:bg-red-700`
                 : `bg-transparent  text-black dark:text-white`
-            } text-sm`}
+            } text-sm w-fit`}
             onClick={() => dispatch(seriesChangeToTopRated())}>
             Top Rated
           </Button>

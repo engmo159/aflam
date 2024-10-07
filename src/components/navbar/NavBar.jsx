@@ -41,7 +41,7 @@ const NavBar = () => {
 
   const navList = (
     <ul
-      className={`mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-black dark:text-white`}
+      className={`mt-2 mb-4 flex gap-2 lg:mb-0 w-fit lg:mt-0 lg:flex-row md:flex-row flex-wrap lg:items-center lg:gap-6 text-black dark:text-white`}
     >
       <Typography
         as='li'
@@ -61,6 +61,7 @@ const NavBar = () => {
           movies
         </NavLink>
       </Typography>
+
       <Typography
         as='li'
         variant='small'
@@ -79,6 +80,7 @@ const NavBar = () => {
           search
         </NavLink>
       </Typography>
+
       <Typography
         as='li'
         variant='small'
@@ -105,7 +107,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar
-        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none z-50 fixed backdrop-saturate-100 ${
+        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none lg:z-50 lg:fixed backdrop-saturate-100 ${
           navScrolled
             ? ' dark:bg-gray-900'
             : 'bg-transparent backdrop-blur-none shadow-none '

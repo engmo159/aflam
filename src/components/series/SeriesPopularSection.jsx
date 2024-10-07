@@ -15,7 +15,7 @@ const SeriesPopularSection = () => {
   } = useSelector((state) => state.seriesReducer);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-2  items-center justify-center place-content-center">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2  items-center justify-center place-content-center">
       {popularSeries?.slice(0, popularSeriesVisible).map((series, index) => (
         <div key={index}>
           <MovieCard movie={series} />
@@ -24,7 +24,7 @@ const SeriesPopularSection = () => {
 
       <Button
         onClick={() => dispatch(popularSeriesLoadMore())}
-        className="flex justify-center col-span-4 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
+        className="flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
         {popularSeriesLoading ? (
           <BarLoader color="red" className="my-2.5" />
         ) : (
