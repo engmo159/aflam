@@ -7,6 +7,7 @@ import Tv from './pages/Tv'
 import Search from './pages/Search'
 import Footer from './components/Footer'
 import GoToTop from './components/GoToTop'
+import MediaDetails from './pages/MediaDetails'
 
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movie' element={<Movies />} />
+        <Route path='/movie/:movieId' element={<MediaDetails />} />
         <Route path='/tv' element={<Tv />} />
         <Route path='/search' element={<Search />} />
       </Routes>

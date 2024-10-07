@@ -5,6 +5,7 @@ import { themeReducer } from './slices/themeSlice'
 import { moviesReducer } from './slices/moviesSlice'
 import { seriesReducer } from './slices/seriesSlice'
 import { searchReducer } from './slices/searchSlice'
+import { mediaDetailReducer } from './slices/mediaDetailsSlice'
 
 //persist reducer config
 const persistConfig = {
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   moviesReducer,
   seriesReducer,
   searchReducer,
+  mediaDetailReducer,
 })
 // default reducer + persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
