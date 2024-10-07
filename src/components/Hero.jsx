@@ -34,9 +34,9 @@ const Hero = ({ displayedItems, genre }) => {
                   backgroundSize: "cover",
                 }}
               />
-              <div className="z-50 absolute inset-0 flex flex-col justify-center pl-[10%] w-1/2 gap-10">
+              <div className="z-50 absolute inset-0 flex flex-col justify-center pl-[10%] lg:w-1/2 gap-10">
                 {/* title  */}
-                <h1 className=" text-white text-7xl font-bold">
+                <h1 className=" text-white lg:text-7xl md:text-6xl text-4xl font-bold">
                   {movie?.title || movie?.name}
                 </h1>
                 <div className="flex gap-4 items-center">

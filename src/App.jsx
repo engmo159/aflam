@@ -21,15 +21,15 @@ const App = () => {
     >
       <NavBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/movie' element={<Movies />} />
-        <Route path='/tv' element={<Tv />} />
-        <Route path='/search' element={<Search />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/movie" element={<Movies />} />
+        <Route path="/tv" element={<Tv />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
       {!pageLoading && <GoToTop />}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

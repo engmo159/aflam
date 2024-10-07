@@ -1,8 +1,8 @@
-import React from 'react'
-import { Button, Typography } from '@material-tailwind/react'
-import { Link } from 'react-router-dom'
-import { FaPlay } from 'react-icons/fa'
-import RadialRatingBar from './RadialRatingBar'
+import React from "react";
+import { Button, Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import { FaPlay } from "react-icons/fa";
+import RadialRatingBar from "./RadialRatingBar";
 
 const MovieCard = ({ movie }) => {
   const backgroundImage = movie?.poster_path
@@ -16,13 +16,13 @@ const MovieCard = ({ movie }) => {
       className={`h-[30rem] bg-[image:var(--image-url)] bg-center bg-cover group `}
     >
       <Link>
-        <div className='opacity-0 group-hover:opacity-100 group-hover:duration-500 space-x-2 ease-linear transition flex flex-col justify-center items-center align-middle h-full bg-gradient-to-t from-black to-transparent p-6 '>
-          <div className='text-white flex flex-col flex-grow w-full justify-center pt-16 items-center'>
-            <Button className='w-fit bg-red-600 rounded-md shadow-none hover:shadow-none hover:bg-red-700'>
+        <div className="opacity-0 group-hover:opacity-100 group-hover:duration-500 space-x-2 ease-linear transition flex flex-col justify-center items-center align-middle h-full bg-gradient-to-t from-black to-transparent p-6 ">
+          <div className="text-white flex flex-col flex-grow w-full justify-center pt-16 items-center">
+            <Button className="w-fit bg-red-600 rounded-md shadow-none hover:shadow-none hover:bg-red-700">
               <FaPlay />
             </Button>
           </div>
-          <div className='flex flex-col w-full items-start'>
+          <div className="flex flex-col w-full items-start">
             <RadialRatingBar movie={movie} />
             <Typography variant='lead' color='white'>
               {movie?.release_date?.substr(0, 4) ||
@@ -36,7 +36,7 @@ const MovieCard = ({ movie }) => {
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default MovieCard
+export default MovieCard;
