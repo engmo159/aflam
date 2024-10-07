@@ -55,10 +55,26 @@ const Home = () => {
   return (
     <div>
       <Hero displayedItems={popularMovies} genre={genreMovieList} />
-      <SwiperLayout media={popularMovies} header='Popular Movies' />
-      <SwiperLayout media={popularSeries} header='Popular Series' />
-      <SwiperLayout media={topRatedMovies} header='Top Rated Movies' />
-      <SwiperLayout media={topRatedSeries} header='Top Rated Series' />
+      <SwiperLayout
+        media={popularMovies}
+        mediaType='movie'
+        header='Popular Movies'
+      />
+      <SwiperLayout
+        media={popularSeries}
+        mediaType='tv'
+        header='Popular Series'
+      />
+      <SwiperLayout
+        media={topRatedMovies}
+        mediaType='movie'
+        header='Top Rated Movies'
+      />
+      <SwiperLayout
+        media={topRatedSeries}
+        mediaType='tv'
+        header='Top Rated Series'
+      />
     </div>
   );
 };
