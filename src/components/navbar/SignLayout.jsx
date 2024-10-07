@@ -20,7 +20,7 @@ const SignLayout = ({ showSignInModal, setShowSignInModal }) => {
           onClick={handleOverlayClick}
           className='fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center '
         >
-          <Card className='w-1/3 p-8 bg-gray-900 flex gap-4'>
+          <Card className='lg:w-1/3 p-8 bg-gray-900 flex gap-4'>
             <Typography
               variant='h4'
               className='py-1.5 font-bold text-2xl
