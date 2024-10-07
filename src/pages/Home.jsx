@@ -14,6 +14,7 @@ import {
   getPopularSeries,
   getTopRatedSeries,
 } from '../redux/slices/seriesSlice'
+import { getPersonDetails } from '../redux/slices/personDetailsSlice'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -59,6 +60,7 @@ const Home = () => {
         genre={genreMovieList}
         mediaType='movie'
       />
+
       <SwiperLayout
         media={popularMovies}
         mediaType='movie'

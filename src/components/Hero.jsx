@@ -74,6 +74,7 @@ const Hero = ({ displayedItems, genre, mediaType }) => {
                 {/* overview  */}
                 <p>{movie?.overview}</p>
                 {/* button  */}
+
                 <Link to={`/${mediaType}/${movie?.id}`}>
                   <Button
                     color='red'

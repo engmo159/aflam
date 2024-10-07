@@ -7,6 +7,7 @@ import Tv from './pages/Tv'
 import Search from './pages/Search'
 import Footer from './components/Footer'
 import GoToTop from './components/GoToTop'
+import PersonDetails from './pages/PersonDetails'
 import MediaDetails from './pages/MediaDetails'
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/movie' element={<Movies />} />
         <Route path='/:mediaType/:mediaId' element={<MediaDetails />} />
+        <Route path='/person/:personId' element={<PersonDetails />} />
         <Route path='/tv' element={<Tv />} />
         <Route path='/search' element={<Search />} />
       </Routes>
