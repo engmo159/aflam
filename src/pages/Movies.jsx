@@ -27,15 +27,19 @@ const Movies = () => {
   }, [popularMoviesPage])
 
   if (pageLoading) {
-    return <Loading load={popularMoviesLoading} />;
+    return <Loading load={popularMoviesLoading} />
   }
 
   return (
     <div>
-      <Hero displayedItems={popularMovies} genre={genreMovieList} />
+      <Hero
+        displayedItems={popularMovies}
+        genre={genreMovieList}
+        mediaType='movie'
+      />
       <MoviesSection />
     </div>
-  );
-};
+  )
+}
 
-export default Movies;
+export default Movies
