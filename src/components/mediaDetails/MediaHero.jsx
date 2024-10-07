@@ -34,11 +34,13 @@ const MediaHero = () => {
       <div className='relative z-20 flex px-[7%] gap-8 w-full '>
         {/* gradient div s  */}
         {/* bottom  */}
+
         <div className='absolute inset-x-0 bottom-0 h-3/4 bg-white/90 dark:bg-black z-10' />
         {/* top  */}
         <div className='absolute inset-x-0 top-[4.5rem] h-1/6 bg-gradient-to-t  from-white/60 dark:from-black to-transparent z-10' />
         {/* middle  */}
         <div className='absolute inset-x-0 top-1/4 h-1/6 bg-gradient-to-t from-white/20 to-white/10 dark:from-black/90 dark:to-black/50  z-10' />
+
         {/* end gradient div s  */}
         {/* Media Poster */}
         {posterImage && (
