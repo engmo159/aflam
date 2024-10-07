@@ -8,7 +8,7 @@ import {
   getGenreMoviesList,
   getPopularMovies,
   getTopRatedMovies,
-} from "../redux/slices/moviesSlice";
+} from '../redux/slices/moviesSlice'
 import {
   getGenreSeriesList,
   getPopularSeries,
@@ -30,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(changePageLoading(true));
+      dispatch(changePageLoading(true))
       await Promise.all([
         dispatch(getTopRatedMovies()),
         dispatch(getPopularMovies()),
@@ -50,11 +50,16 @@ const Home = () => {
   }, [])
 
   if (pageLoading) {
-    return <Loading load={popularMoviesLoading} />;
+    return <Loading load={popularMoviesLoading} />
   }
   return (
     <div>
-      <Hero displayedItems={popularMovies} genre={genreMovieList} />
+      <Hero
+        displayedItems={popularMovies}
+        genre={genreMovieList}
+        mediaType='movie'
+      />
+
       <SwiperLayout
         media={popularMovies}
         mediaType='movie'
@@ -76,7 +81,7 @@ const Home = () => {
         header='Top Rated Series'
       />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
