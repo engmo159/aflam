@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
-import Hero from '../components/Hero'
-import SwiperLayout from '../components/SwiperLayout'
-import Loading from '../components/Loading'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from "react";
+import Hero from "../components/Hero";
+import SwiperLayout from "../components/SwiperLayout";
+import Loading from "../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changePageLoading,
   getGenreMoviesList,
@@ -13,20 +13,21 @@ import {
   getGenreSeriesList,
   getPopularSeries,
   getTopRatedSeries,
-} from '../redux/slices/seriesSlice'
+} from "../redux/slices/seriesSlice";
+import { getPersonDetails } from "../redux/slices/personDetailsSlice";
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { popularSeries, topRatedSeries } = useSelector(
-    state => state.seriesReducer
-  )
+    (state) => state.seriesReducer
+  );
   const {
     pageLoading,
     popularMovies,
     topRatedMovies,
     popularMoviesLoading,
     genreMovieList,
-  } = useSelector(state => state.moviesReducer)
+  } = useSelector((state) => state.moviesReducer);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,27 +39,48 @@ const Home = () => {
         dispatch(getTopRatedSeries()),
         dispatch(getPopularSeries()),
         dispatch(getGenreSeriesList()),
-      ])
-      dispatch(changePageLoading(false))
-    }
+      ]);
+      dispatch(changePageLoading(false));
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    dispatch(changePageLoading(true))
-  }, [])
+    dispatch(changePageLoading(true));
+  }, []);
 
   if (pageLoading) {
     return <Loading load={popularMoviesLoading} />;
   }
   return (
     <div>
-      <Hero displayedItems={popularMovies} genre={genreMovieList} />
-      <SwiperLayout media={popularMovies} header='Popular Movies' />
-      <SwiperLayout media={popularSeries} header='Popular Series' />
-      <SwiperLayout media={topRatedMovies} header='Top Rated Movies' />
-      <SwiperLayout media={topRatedSeries} header='Top Rated Series' />
+      <Hero
+        displayedItems={popularMovies}
+        genre={genreMovieList}
+        mediaType="movie"
+      />
+
+      <SwiperLayout
+        media={popularMovies}
+        mediaType="movie"
+        header="Popular Movies"
+      />
+      <SwiperLayout
+        media={popularSeries}
+        mediaType="tv"
+        header="Popular Series"
+      />
+      <SwiperLayout
+        media={topRatedMovies}
+        mediaType="movie"
+        header="Top Rated Movies"
+      />
+      <SwiperLayout
+        media={topRatedSeries}
+        mediaType="tv"
+        header="Top Rated Series"
+      />
     </div>
   );
 };

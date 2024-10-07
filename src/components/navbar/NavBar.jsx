@@ -187,16 +187,6 @@ const NavBar = () => {
               >
                 <span>Log In</span>
               </Button>
-              <Button
-                fullWidth
-                color="red"
-                variant="filled"
-                size="sm"
-                className="w-fit"
-                onClick={() => setShowSignInModal(true)}
-              >
-                <span>Sign in</span>
-              </Button>
             </div>
           </div>
         </Collapse>
