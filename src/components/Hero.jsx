@@ -8,7 +8,6 @@ import { Button } from '@material-tailwind/react'
 import { BiSolidRightArrow } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
-
 const Hero = ({ displayedItems, genre, mediaType }) => {
   return (
     <div className='relative h-screen overflow-hidden'>
@@ -85,7 +84,6 @@ const Hero = ({ displayedItems, genre, mediaType }) => {
                     Watch Now
                   </Button>
                 </Link>
-
               </div>
               <div className='absolute z-10 inset-0 bg-gradient-to-r from-white dark:from-black to-transparent pointer-events-none' />
             </SwiperSlide>

@@ -12,7 +12,7 @@ const SwiperLayout = ({ media, mediaType, header }) => {
         <h1 className='font-bold text-3xl'>{header}</h1>
         <hr className='w-28 border-[3px] border-red-600 ' />
       </div>
-      <div className="w-full h-full">
+      <div className='w-full h-full'>
         <Swiper
           lazy='true'
           breakpoints={{
@@ -36,7 +36,8 @@ const SwiperLayout = ({ media, mediaType, header }) => {
           //   clickable: true,
           // }}
           modules={[Pagination]}
-          className="mySwiper">
+          className='mySwiper'
+        >
           {media?.map((movie, index) => (
             <SwiperSlide key={index}>
               <div>
@@ -47,7 +48,7 @@ const SwiperLayout = ({ media, mediaType, header }) => {
         </Swiper>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SwiperLayout;
+export default SwiperLayout
