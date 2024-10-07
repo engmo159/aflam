@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { FaRegHeart } from 'react-icons/fa6'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+import { Link } from 'react-router-dom'
 
 const MediaHero = () => {
   const { mediaDetail, castDetail } = useSelector(
@@ -130,20 +131,22 @@ const MediaHero = () => {
               {castDetail?.length > 0 &&
                 castDetail?.map((cast, index) => (
                   <SwiperSlide key={index} className='h-52 w-full'>
-                    <div
-                      className='h-full w-full bg-center bg-no-repeat flex items-end justify-center rounded-sm'
-                      style={{
-                        backgroundImage: `url(${
-                          import.meta.env.VITE_BASE_TMDB_POSTER_PATH
-                        }${cast?.profile_path})`,
-                        backgroundSize: 'cover',
-                      }}
-                    >
-                      {/* title  */}
-                      <h1 className=' text-white text-center overflow-hidden py-2 w-full bg-black/40'>
-                        {cast?.name}
-                      </h1>
-                    </div>
+                    <Link to={`/person/${cast.id}`}>
+                      <div
+                        className='h-full w-full bg-center bg-no-repeat flex items-end justify-center rounded-sm'
+                        style={{
+                          backgroundImage: `url(${
+                            import.meta.env.VITE_BASE_TMDB_POSTER_PATH
+                          }${cast?.profile_path})`,
+                          backgroundSize: 'cover',
+                        }}
+                      >
+                        {/* title  */}
+                        <h1 className=' text-white text-center overflow-hidden py-2 w-full bg-black/40'>
+                          {cast?.name}
+                        </h1>
+                      </div>
+                    </Link>
                   </SwiperSlide>
                 ))}
             </Swiper>
