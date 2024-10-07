@@ -59,6 +59,7 @@ const Home = () => {
         genre={genreMovieList}
         mediaType='movie'
       />
+
       <SwiperLayout
         media={popularMovies}
         mediaType='movie'
