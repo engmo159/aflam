@@ -41,11 +41,13 @@ const NavBar = () => {
 
   const navList = (
     <ul
-      className={`mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-black dark:text-white`}>
+      className={`mt-2 mb-4 flex gap-2 lg:mb-0 w-fit lg:mt-0 lg:flex-row md:flex-row flex-wrap lg:items-center lg:gap-6 text-black dark:text-white`}
+    >
       <Typography
         as="li"
         variant="small"
-        className="flex items-center gap-x-2 p-1 font-medium tracking-wider">
+        className="flex items-center gap-x-2 p-1 font-medium tracking-wider"
+      >
         <NavLink className="uppercase" to="/">
           home
         </NavLink>
@@ -53,15 +55,18 @@ const NavBar = () => {
       <Typography
         as="li"
         variant="small"
-        className="flex items-center gap-x-2 p-1 font-medium tracking-wider">
+        className="flex items-center gap-x-2 p-1 font-medium tracking-wider"
+      >
         <NavLink className="uppercase" to="/movie">
           movies
         </NavLink>
       </Typography>
+
       <Typography
         as="li"
         variant="small"
-        className="flex items-center gap-x-2 p-1 font-medium tracking-wider">
+        className="flex items-center gap-x-2 p-1 font-medium tracking-wider"
+      >
         <NavLink className="uppercase" to="/tv">
           tv series
         </NavLink>
@@ -69,22 +74,26 @@ const NavBar = () => {
       <Typography
         as="li"
         variant="small"
-        className="flex items-center gap-x-2 p-1 font-medium tracking-wider">
+        className="flex items-center gap-x-2 p-1 font-medium tracking-wider"
+      >
         <NavLink className="uppercase" to="/search">
           search
         </NavLink>
       </Typography>
+
       <Typography
         as="li"
         variant="small"
         color="white"
-        className="flex items-center gap-x-2 p-1 font-medium tracking-wider">
+        className="flex items-center gap-x-2 p-1 font-medium tracking-wider"
+      >
         <IconButton
           variant="text"
           className="text-2xl"
           onClick={() => {
             dispatch(changeTheme());
-          }}>
+          }}
+        >
           {theme === "dark" ? (
             <PiSunBold className="text-white" />
           ) : (
@@ -98,28 +107,31 @@ const NavBar = () => {
   return (
     <>
       <Navbar
-        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none z-50 fixed backdrop-saturate-100 ${
+        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none lg:z-50 lg:fixed backdrop-saturate-100 ${
           navScrolled
             ? " dark:bg-gray-900"
-            : "bg-transparent backdrop-blur-none shadow-none "
-        }`}>
+            : "lg:bg-transparent backdrop-blur-none shadow-none "
+        }`}
+      >
         <div className="container mx-auto flex items-center justify-between text-white ">
           <div className="flex gap-x-4">
             <Link
               to="/"
-              className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white">
+              className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white"
+            >
               Redux <span className="text-red-500">Movies</span>
             </Link>
 
             <div className="hidden lg:block">{navList}</div>
           </div>
-          <div className="flex items-center gap-x-1">
+          <div className="flex items-center justify-center gap-x-1">
             <Button
               variant="filled"
               size="sm"
               className="hidden lg:inline-block tracking-wider text-white text-sm hover:shadow-none rounded-md shadow-none"
               color="red"
-              onClick={() => setShowSignInModal(true)}>
+              onClick={() => setShowSignInModal(true)}
+            >
               Sign in
             </Button>
           </div>
@@ -127,7 +139,8 @@ const NavBar = () => {
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
-            onClick={() => setOpenNav(!openNav)}>
+            onClick={() => setOpenNav(!openNav)}
+          >
             {openNav ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +148,8 @@ const NavBar = () => {
                 className="h-6 w-6"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={2}>
+                strokeWidth={2}
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -148,7 +162,8 @@ const NavBar = () => {
                 className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={2}>
+                strokeWidth={2}
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -159,13 +174,27 @@ const NavBar = () => {
           </IconButton>
         </div>
         <Collapse open={openNav}>
-          <div className="container mx-auto">
+          <div className="flex md:flex-col justify-between container mx-auto">
             {navList}
-            <div className="flex items-center gap-x-1">
-              <Button fullWidth variant="text" size="sm" className="">
+            <div className="flex flex-col justify-center items-center gap-2">
+              <Button
+                fullWidth
+                color="red"
+                variant="filled"
+                size="sm"
+                className="w-fit"
+                onClick={() => setShowSignInModal(true)}
+              >
                 <span>Log In</span>
               </Button>
-              <Button fullWidth variant="gradient" size="sm" className="">
+              <Button
+                fullWidth
+                color="red"
+                variant="filled"
+                size="sm"
+                className="w-fit"
+                onClick={() => setShowSignInModal(true)}
+              >
                 <span>Sign in</span>
               </Button>
             </div>

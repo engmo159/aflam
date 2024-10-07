@@ -28,7 +28,7 @@ const TopRatedSection = () => {
   }
 
   return (
-    <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2  items-center justify-center place-content-center">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2  items-center justify-center place-content-center">
       {topRatedMovies?.slice(0, topRatedMoviesVisible)?.map((movie, index) => (
         <div key={index}>
           <MovieCard movie={movie} />
@@ -36,7 +36,7 @@ const TopRatedSection = () => {
       ))}
       <Button
         onClick={() => dispatch(topRatedLoadMore())}
-        className="flex justify-center col-span-4 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
+        className="flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
         {topRatedMoviesLoading ? (
           <BarLoader color="red" className="my-2.5" />
         ) : (

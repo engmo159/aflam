@@ -1,22 +1,24 @@
-import { useSelector } from "react-redux";
-import NavBar from "./components/navbar/NavBar";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Movies from "./pages/Movies";
-import Tv from "./pages/Tv";
-import Search from "./pages/Search";
-import Footer from "./components/Footer";
+import { useSelector } from 'react-redux'
+import NavBar from './components/navbar/NavBar'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Movies from './pages/Movies'
+import Tv from './pages/Tv'
+import Search from './pages/Search'
+import Footer from './components/Footer'
+import GoToTop from './components/GoToTop'
 
 const App = () => {
-  const { theme } = useSelector((state) => state.themeReducer);
-
+  const { theme } = useSelector(state => state.themeReducer)
+  const { pageLoading } = useSelector(state => state.moviesReducer)
   return (
     <div
       className={`${
-        theme === "dark"
-          ? "bg-black text-white dark"
-          : "bg-[#f5f5f5] text-black"
-      } min-h-screen font-sans`}>
+        theme === 'dark'
+          ? 'bg-black text-white dark'
+          : 'bg-[#f5f5f5] text-black'
+      } min-h-screen font-sans`}
+    >
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -25,6 +27,7 @@ const App = () => {
         <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
+      {!pageLoading && <GoToTop />}
     </div>
   );
 };

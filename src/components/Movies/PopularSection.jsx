@@ -5,7 +5,6 @@ import { BarLoader } from "react-spinners";
 import { popularLoadMore } from "../../redux/slices/moviesSlice";
 import MovieCard from "./MovieCard";
 
-
 const PopularSection = () => {
   const dispatch = useDispatch();
   const {
@@ -20,16 +19,15 @@ const PopularSection = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-2  items-center justify-center place-content-center">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 items-center justify-center place-content-center">
       {popularMovies?.slice(0, popularMoviesVisible).map((movie, index) => (
-        <div key={index}>
-          <MovieCard movie={movie} />
-        </div>
+        <MovieCard movie={movie} key={index} />
       ))}
 
       <Button
         onClick={() => dispatch(popularLoadMore())}
-        className="flex justify-center col-span-4 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
+        className="flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold"
+      >
         {popularMoviesLoading ? (
           <BarLoader color="red" className="my-2.5" />
         ) : (
