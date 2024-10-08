@@ -1,10 +1,17 @@
+
+import { useSelector } from 'react-redux'
+
 /* eslint-disable react/prop-types */
-import React from 'react'
 
 const VideoSlider = ({ media }) => {
-  const videoUrl = `${import.meta.env.VITE_BASE_TMDB_YouTube}/${media?.key}`
+  const videoUrl = `https://www.youtube.com/embed/${media?.key}`
+  const { videoDetailLoading } = useSelector(state => state.mediaDetailReducer)
+  if (videoDetailLoading) {
+    return <span className='loader'></span>
+  }
   return (
-    <div className='h-full w-full'>
+    <div className='h-full w-full' id='video'>
+
       <iframe
         key={media.key}
         className='h-full w-full rounded-lg'

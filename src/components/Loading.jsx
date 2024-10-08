@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { BarLoader } from 'react-spinners'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
