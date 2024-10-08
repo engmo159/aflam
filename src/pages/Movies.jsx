@@ -32,7 +32,11 @@ const Movies = () => {
 
   return (
     <div>
-      <Hero displayedItems={popularMovies} genre={genreMovieList} />
+      <Hero
+        displayedItems={popularMovies}
+        genre={genreMovieList}
+        mediaType='movie'
+      />
       <MoviesSection />
     </div>
   );

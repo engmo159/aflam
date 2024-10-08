@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Pagination } from 'swiper/modules'
 import MovieCard from './Movies/MovieCard'
 
-const SwiperLayout = ({ media, header }) => {
+const SwiperLayout = ({ media, mediaType, header }) => {
   return (
     <div className='flex flex-col gap-8 px-4 lg:px-20 py-10 h-full overflow-hidden'>
       <div className='flex flex-col gap-1 '>
@@ -13,7 +14,7 @@ const SwiperLayout = ({ media, header }) => {
       </div>
       <div className="w-full h-full">
         <Swiper
-          lazy={"true"}
+          lazy='true'
           breakpoints={{
             640: {
               slidesPerView: 1,
@@ -39,7 +40,7 @@ const SwiperLayout = ({ media, header }) => {
           {media?.map((movie, index) => (
             <SwiperSlide key={index}>
               <div>
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie} mediaType={mediaType} />
               </div>
             </SwiperSlide>
           ))}
