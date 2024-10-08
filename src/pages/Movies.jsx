@@ -27,7 +27,7 @@ const Movies = () => {
   }, [popularMoviesPage])
 
   if (pageLoading) {
-    return <Loading load={popularMoviesLoading} />
+    return <Loading load={popularMoviesLoading} />;
   }
 
   return (
@@ -39,7 +39,7 @@ const Movies = () => {
       />
       <MoviesSection />
     </div>
-  )
-}
+  );
+};
 
-export default Movies
+export default Movies;

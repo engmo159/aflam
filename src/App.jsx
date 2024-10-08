@@ -11,16 +11,15 @@ import PersonDetails from './pages/PersonDetails'
 import MediaDetails from './pages/MediaDetails'
 
 const App = () => {
-  const { theme } = useSelector(state => state.themeReducer)
-  const { pageLoading } = useSelector(state => state.moviesReducer)
+  const { theme } = useSelector((state) => state.themeReducer);
+  const { pageLoading } = useSelector((state) => state.moviesReducer);
   return (
     <div
       className={`${
-        theme === 'dark'
-          ? 'bg-black text-white dark'
-          : 'bg-[#f5f5f5] text-black'
-      } min-h-screen font-sans`}
-    >
+        theme === "dark"
+          ? "bg-black text-white dark"
+          : "bg-[#f5f5f5] text-black"
+      } min-h-screen font-sans`}>
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -33,7 +32,7 @@ const App = () => {
       <Footer />
       {!pageLoading && <GoToTop />}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
