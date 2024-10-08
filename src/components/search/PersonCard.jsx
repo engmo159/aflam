@@ -2,7 +2,6 @@
 import { Button } from '@material-tailwind/react'
 import { FaPlay } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-
 const PersonCard = ({ personData }) => {
   const backgroundImage = personData?.profile_path
     ? `url(https://image.tmdb.org/t/p/w500${personData?.profile_path})`
