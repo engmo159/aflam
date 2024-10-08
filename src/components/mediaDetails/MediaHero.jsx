@@ -103,13 +103,15 @@ const MediaHero = () => {
               <FaRegHeart className='text-2xl' />
             </button>
             {/* Watch Now Button */}
-            <Button
-              color='red'
-              className='flex w-max gap-2 text-md items-center justify-center font-normal'
-            >
-              <BiSolidRightArrow />
-              Watch Now
-            </Button>
+            <a href='#video'>
+              <Button
+                color='red'
+                className='flex w-max gap-2 text-md items-center justify-center font-normal'
+              >
+                <BiSolidRightArrow />
+                Watch Now
+              </Button>
+            </a>
           </div>
           {/* cast  */}
           <div className='flex flex-col gap-4'>

@@ -38,6 +38,31 @@ const creditsApi = ({ mediaCategory, mediaId }) => {
     },
   }
 }
+const imageApi = ({ mediaCategory, mediaId }) => {
+  return {
+    method: 'GET',
+    url: `${
+      import.meta.env.VITE_BASE_TMDB_URL
+    }/${mediaCategory}/${mediaId}/images`,
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
+    },
+  }
+}
+const reviewApi = ({ mediaCategory, mediaId, page }) => {
+  return {
+    method: 'GET',
+    url: `${
+      import.meta.env.VITE_BASE_TMDB_URL
+    }/${mediaCategory}/${mediaId}/reviews`,
+    params: { language: 'en-US', page },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
+    },
+  }
+}
 // functions
 export const getMediaDetails = createAsyncThunk(
   '/getMediaDetails',
@@ -77,6 +102,18 @@ export const getVideoDetails = createAsyncThunk(
     }
   }
 )
+export const getImageDetails = createAsyncThunk(
+  '/getImageDetails',
+  async ({ mediaCategory, mediaId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI
+    try {
+      const { data } = await axios.request(imageApi({ mediaCategory, mediaId }))
+      return data
+    } catch (e) {
+      return rejectWithValue(e)
+    }
+  }
+)
 
 const initialState = {
   mediaDetail: {},
@@ -89,6 +126,15 @@ const initialState = {
   videoDetail: [],
   videoDetailLoading: false,
   videoDetailErr: null,
+  backdropDetail: [],
+  backdropDetailLoading: false,
+  backdropDetailErr: null,
+  logoDetail: [],
+  logoDetailLoading: false,
+  logoDetailErr: null,
+  posterDetail: [],
+  posterDetailLoading: false,
+  posterDetailErr: null,
 }
 const mediaDetailsSlice = createSlice({
   name: 'mediaDetails',
@@ -131,6 +177,29 @@ const mediaDetailsSlice = createSlice({
     builder.addCase(getVideoDetails.rejected, (state, action) => {
       state.videoDetailLoading = false
       state.videoDetailErr = action.payload?.message || 'something went error'
+    })
+    // get images detail
+    builder.addCase(getImageDetails.pending, state => {
+      state.backdropDetailLoading = true
+      state.logoDetailLoading = true
+      state.posterDetailLoading = true
+    })
+    builder.addCase(getImageDetails.fulfilled, (state, { payload }) => {
+      state.backdropDetailLoading = false
+      state.logoDetailLoading = false
+      state.posterDetailLoading = false
+      state.backdropDetail = payload.backdrops
+      state.logoDetail = payload.logos
+      state.posterDetail = payload.posters
+    })
+    builder.addCase(getImageDetails.rejected, (state, action) => {
+      state.backdropDetailLoading = false
+      state.logoDetailLoading = false
+      state.posterDetailLoading = false
+      state.backdropDetailErr =
+        action.payload?.message || 'something went error'
+      state.logoDetailErr = action.payload?.message || 'something went error'
+      state.posterDetailErr = action.payload?.message || 'something went error'
     })
   },
 })
