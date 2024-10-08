@@ -7,20 +7,24 @@ import {
   getCreditDetails,
   getMediaDetails,
 } from '../redux/slices/mediaDetailsSlice'
-import { changePageLoading } from '../redux/slices/moviesSlice'
+
 import Loading from '../components/Loading'
+import { changePageLoading } from '../redux/slices/moviesSlice'
 const MediaDetails = () => {
   const dispatch = useDispatch()
   const { mediaDetail, mediaDetailLoading } = useSelector(
     state => state.mediaDetailReducer
   )
   const { mediaType, mediaId } = useParams()
-  const { pageLoading } = useSelector(state => state.moviesReducer)
+
   useEffect(() => {
     dispatch(changePageLoading(true))
     dispatch(getMediaDetails({ mediaCategory: mediaType, mediaId }))
     dispatch(getCreditDetails({ mediaCategory: mediaType, mediaId }))
   }, [mediaId, mediaType, dispatch])
+
+  const { pageLoading } = useSelector(state => state.moviesReducer)
+
   if (pageLoading) {
     return <Loading load={mediaDetailLoading} />
   }
