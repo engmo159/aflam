@@ -16,6 +16,7 @@ import { changePageLoading } from '../redux/slices/moviesSlice'
 import SliderLayout from '../components/mediaDetails/SliderLayout'
 import { SwiperSlide } from 'swiper/react'
 import VideoSlider from '../components/mediaDetails/VideoSlider'
+
 import PosterLayout from '../components/mediaDetails/PosterLayout'
 import ReviewSection from '../components/mediaDetails/ReviewSection'
 const MediaDetails = () => {
@@ -27,6 +28,7 @@ const MediaDetails = () => {
     posterDetail,
     backdropDetail,
   } = useSelector(state => state.mediaDetailReducer)
+
   const { mediaType, mediaId } = useParams()
 
   useEffect(() => {
@@ -34,7 +36,9 @@ const MediaDetails = () => {
     dispatch(getMediaDetails({ mediaCategory: mediaType, mediaId }))
     dispatch(getCreditDetails({ mediaCategory: mediaType, mediaId }))
     dispatch(getVideoDetails({ mediaCategory: mediaType, mediaId }))
+
     dispatch(getImageDetails({ mediaCategory: mediaType, mediaId }))
+
   }, [mediaId, mediaType, dispatch])
 
   const { pageLoading } = useSelector(state => state.moviesReducer)
@@ -46,16 +50,19 @@ const MediaDetails = () => {
     <div>
       <MediaHero />
 
+
       <div className='bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16 flex flex-col gap-28'>
         {/* images && videos  */}
         <SliderLayout header='Videos'>
           {videoDetail?.length > 0 &&
             videoDetail?.slice(0, 10).map((media, index) => (
+
               <SwiperSlide key={index} className='w-full'>
                 <VideoSlider media={media} />
               </SwiperSlide>
             ))}
         </SliderLayout>
+
         <SliderLayout header='backdrops'>
           {backdropDetail?.length > 0 &&
             backdropDetail?.slice(0, 10).map((media, index) => (
@@ -97,6 +104,7 @@ const MediaDetails = () => {
         </PosterLayout>
         {/* reviews  */}
         <ReviewSection />
+
       </div>
     </div>
   )

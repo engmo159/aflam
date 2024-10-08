@@ -38,6 +38,7 @@ const creditsApi = ({ mediaCategory, mediaId }) => {
     },
   }
 }
+
 const imageApi = ({ mediaCategory, mediaId }) => {
   return {
     method: 'GET',
@@ -63,6 +64,7 @@ const reviewApi = ({ mediaCategory, mediaId, page }) => {
     },
   }
 }
+
 // functions
 export const getMediaDetails = createAsyncThunk(
   '/getMediaDetails',
@@ -102,6 +104,7 @@ export const getVideoDetails = createAsyncThunk(
     }
   }
 )
+
 export const getImageDetails = createAsyncThunk(
   '/getImageDetails',
   async ({ mediaCategory, mediaId }, thunkAPI) => {
@@ -115,6 +118,7 @@ export const getImageDetails = createAsyncThunk(
   }
 )
 
+
 const initialState = {
   mediaDetail: {},
   mediaDetailLoading: false,
@@ -126,6 +130,7 @@ const initialState = {
   videoDetail: [],
   videoDetailLoading: false,
   videoDetailErr: null,
+
   backdropDetail: [],
   backdropDetailLoading: false,
   backdropDetailErr: null,
@@ -135,6 +140,7 @@ const initialState = {
   posterDetail: [],
   posterDetailLoading: false,
   posterDetailErr: null,
+
 }
 const mediaDetailsSlice = createSlice({
   name: 'mediaDetails',
@@ -178,6 +184,7 @@ const mediaDetailsSlice = createSlice({
       state.videoDetailLoading = false
       state.videoDetailErr = action.payload?.message || 'something went error'
     })
+
     // get images detail
     builder.addCase(getImageDetails.pending, state => {
       state.backdropDetailLoading = true
@@ -201,6 +208,7 @@ const mediaDetailsSlice = createSlice({
       state.logoDetailErr = action.payload?.message || 'something went error'
       state.posterDetailErr = action.payload?.message || 'something went error'
     })
+
   },
 })
 export const mediaDetailReducer = mediaDetailsSlice.reducer

@@ -1,3 +1,4 @@
+
 import { useSelector } from 'react-redux'
 
 /* eslint-disable react/prop-types */
@@ -10,6 +11,7 @@ const VideoSlider = ({ media }) => {
   }
   return (
     <div className='h-full w-full' id='video'>
+
       <iframe
         key={media.key}
         className='h-full w-full rounded-lg'
