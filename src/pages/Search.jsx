@@ -47,7 +47,7 @@ const Search = () => {
           {mediaCategories.map((category, index) => (
             <Button
               key={index}
-              className='uppercase text-sm rounded-md text-white'
+              className='uppercase text-sm rounded-md dark:text-white text-black'
               variant={category == mediaType ? 'filled' : 'text'}
               color='red'
               onClick={() => {

@@ -22,7 +22,7 @@ const MovieCard = ({ movie, mediaType }) => {
               <FaPlay />
             </Button>
           </div>
-          <div className='flex flex-col w-full items-start'>
+          <div className="flex flex-col w-full items-start">
             <RadialRatingBar movie={movie} />
             <Typography variant='lead' color='white'>
               {movie?.release_date?.substr(0, 4) ||
@@ -36,7 +36,7 @@ const MovieCard = ({ movie, mediaType }) => {
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default MovieCard
+export default MovieCard;

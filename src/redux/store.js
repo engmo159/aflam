@@ -10,10 +10,10 @@ import { personDetailsReducer } from './slices/personDetailsSlice'
 
 //persist reducer config
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['themeReducer'],
-}
+  whitelist: ["themeReducer"],
+};
 // default reducer
 const rootReducer = combineReducers({
   themeReducer,
@@ -24,15 +24,15 @@ const rootReducer = combineReducers({
   personDetailsReducer,
 })
 // default reducer + persist reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 //store
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-})
-export const persister = persistStore(store)
+});
+export const persister = persistStore(store);
 
-export default store
+export default store;
