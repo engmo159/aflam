@@ -6,13 +6,18 @@ import { useParams } from 'react-router-dom'
 import {
   getCreditDetails,
   getMediaDetails,
+  getVideoDetails,
 } from '../redux/slices/mediaDetailsSlice'
 
 import Loading from '../components/Loading'
+
 import { changePageLoading } from '../redux/slices/moviesSlice'
+import SliderLayout from '../components/mediaDetails/SliderLayout'
+import { SwiperSlide } from 'swiper/react'
+import VideoSlider from '../components/mediaDetails/VideoSlider'
 const MediaDetails = () => {
   const dispatch = useDispatch()
-  const { mediaDetail, mediaDetailLoading } = useSelector(
+  const { videoDetail, mediaDetailLoading } = useSelector(
     state => state.mediaDetailReducer
   )
   const { mediaType, mediaId } = useParams()
@@ -21,6 +26,7 @@ const MediaDetails = () => {
     dispatch(changePageLoading(true))
     dispatch(getMediaDetails({ mediaCategory: mediaType, mediaId }))
     dispatch(getCreditDetails({ mediaCategory: mediaType, mediaId }))
+    dispatch(getVideoDetails({ mediaCategory: mediaType, mediaId }))
   }, [mediaId, mediaType, dispatch])
 
   const { pageLoading } = useSelector(state => state.moviesReducer)
@@ -31,6 +37,16 @@ const MediaDetails = () => {
   return (
     <div>
       <MediaHero />
+      <div className='bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16'>
+        <SliderLayout header='Videos'>
+          {videoDetail?.length > 0 &&
+            videoDetail?.map((media, index) => (
+              <SwiperSlide key={index} className='w-full'>
+                <VideoSlider media={media} />
+              </SwiperSlide>
+            ))}
+        </SliderLayout>
+      </div>
     </div>
   )
 }

@@ -36,7 +36,7 @@ const MediaHero = () => {
         {/* gradient div s  */}
         {/* bottom  */}
 
-        <div className='absolute inset-x-0 bottom-0 h-3/4 bg-white/90 dark:bg-black z-10' />
+        <div className='absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t  from-white to-white/95 dark:from-black dark:to-black z-10' />
         {/* top  */}
         <div className='absolute inset-x-0 top-[4.5rem] h-1/6 bg-gradient-to-t  from-white/60 dark:from-black to-transparent z-10' />
         {/* middle  */}
