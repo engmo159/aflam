@@ -11,6 +11,7 @@ import PersonHero from "../components/person/PersonHero";
 import { changePageLoading } from "../redux/slices/moviesSlice";
 import Loading from "../components/Loading";
 import PersonImages from "../components/person/PersonImages";
+import CombinedCredits from "../components/person/CombinedCredits";
 
 const PersonDetails = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const PersonDetails = () => {
     <div className=" lg:px-0 px-10 flex flex-col gap-8 ">
       <PersonHero />
       <PersonImages />
+      <CombinedCredits />
     </div>
   );
 };
