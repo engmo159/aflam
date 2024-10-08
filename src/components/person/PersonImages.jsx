@@ -1,22 +1,22 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
-import { useSelector } from "react-redux";
+import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination } from 'swiper/modules'
+import { useSelector } from 'react-redux'
 
 const PersonImages = () => {
-  const { personImages } = useSelector((state) => state.personDetailsReducer);
+  const { personImages } = useSelector(state => state.personDetailsReducer)
 
   return (
-    <div className="flex flex-col gap-8 lg:px-20 py-5 h-full overflow-hidden">
-      <div className="flex flex-col gap-1 ">
-        <h1 className="font-bold text-3xl">Images</h1>
-        <hr className="w-28 border-[3px] border-red-600 " />
+    <div className='flex flex-col gap-8 lg:px-20 py-5 h-full overflow-hidden'>
+      <div className='flex flex-col gap-1 '>
+        <h1 className='font-bold text-3xl'>Images</h1>
+        <hr className='w-28 border-[3px] border-red-600 ' />
       </div>
-      <div className="w-full h-full">
+      <div className='w-full h-full'>
         <Swiper
-          lazy="true"
+          lazy='true'
           breakpoints={{
             640: {
               slidesPerView: 1,
@@ -38,25 +38,26 @@ const PersonImages = () => {
           //   clickable: true,
           // }}
           modules={[Pagination]}
-          className="mySwiper"
+          className='mySwiper'
         >
-          {personImages?.map((image, index) => (
-            <SwiperSlide key={index}>
-              <div className="m-1">
-                <img
-                  className="h-full w-full object-cover object-center"
-                  src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
-                    image.file_path
-                  }`}
-                  alt="nature image"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
+          {personImages.length > 0 &&
+            personImages?.map((image, index) => (
+              <SwiperSlide key={index}>
+                <div className='m-1'>
+                  <img
+                    className='h-full w-full object-cover object-center'
+                    src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
+                      image?.file_path
+                    }`}
+                    alt='nature image'
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PersonImages;
+export default PersonImages
