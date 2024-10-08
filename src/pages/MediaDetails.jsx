@@ -10,6 +10,7 @@ import {
 } from '../redux/slices/mediaDetailsSlice'
 
 import Loading from '../components/Loading'
+
 import { changePageLoading } from '../redux/slices/moviesSlice'
 import SliderLayout from '../components/mediaDetails/SliderLayout'
 import { SwiperSlide } from 'swiper/react'

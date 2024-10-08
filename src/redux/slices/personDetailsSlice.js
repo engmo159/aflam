@@ -108,12 +108,18 @@ const initialState = {
   personExternals: {},
   personImages: {},
   personCredits: {},
+  personCreditsLoading: false,
+  personCreditsVisible: 20,
 };
 
 const personDetailsSlice = createSlice({
   name: "personDetails",
   initialState,
-  reducers: {},
+  reducers: {
+    creditsLoadMore: (state) => {
+      state.personCreditsVisible += 20;
+    },
+  },
   extraReducers: (builder) => {
     // person details
     builder.addCase(getPersonDetails.pending, (state) => {
@@ -159,14 +165,14 @@ const personDetailsSlice = createSlice({
 
     // person credits
     builder.addCase(getCredits.pending, (state) => {
-      state.personDetailsLoading = true;
+      state.personCreditsLoading = true;
     });
     builder.addCase(getCredits.fulfilled, (state, { payload }) => {
-      state.personDetailsLoading = false;
-      state.personCredits = payload.cast;
+      state.personCreditsLoading = false;
+      state.personCredits = payload.cast.concat(payload.crew);
     });
     builder.addCase(getCredits.rejected, (state, action) => {
-      state.personDetailsLoading = false;
+      state.personCreditsLoading = false;
       state.personDetailsErr =
         action.payload?.message || "something went error";
     });
@@ -174,4 +180,4 @@ const personDetailsSlice = createSlice({
 });
 
 export const personDetailsReducer = personDetailsSlice.reducer;
-export const {} = personDetailsSlice.actions;
+export const { creditsLoadMore } = personDetailsSlice.actions;
