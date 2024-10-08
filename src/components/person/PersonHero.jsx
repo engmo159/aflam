@@ -28,7 +28,7 @@ const PersonHero = () => {
           <p className="font-normal">
             {personDetails.biography?.substr(0, 1200)}...
           </p>
-          <p>{personDetails?.place_of_birth}</p>
+          <p className="font-medium">{personDetails?.place_of_birth}</p>
           <ExternalLinks />
         </div>
       </div>
