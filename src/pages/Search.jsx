@@ -54,8 +54,7 @@ const Search = () => {
                 dispatch(setMediaType(category));
                 searchHandler(query, category);
               }}
-              size="md"
-            >
+              size="md">
               {category}
             </Button>
           ))}
