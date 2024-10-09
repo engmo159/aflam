@@ -5,7 +5,6 @@ import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   changePageLoading,
-  getGenreMoviesList,
   getPopularMovies,
   getTopRatedMovies,
 } from '../redux/slices/moviesSlice'
@@ -34,13 +33,14 @@ const Home = () => {
       await Promise.all([
         dispatch(getTopRatedMovies()),
         dispatch(getPopularMovies()),
-        dispatch(getGenreMoviesList()),
         dispatch(getTopRatedSeries()),
         dispatch(getPopularSeries()),
         dispatch(getGenreSeriesList()),
       ])
       dispatch(changePageLoading(false))
     }
+
+    dispatch(changePageLoading(false))
 
     fetchData()
   }, [])

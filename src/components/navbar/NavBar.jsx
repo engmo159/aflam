@@ -107,7 +107,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar
-        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none lg:z-50 lg:fixed backdrop-saturate-100 ${
+        className={`mx-auto max-w-screen-4xl px-4 py-2 border-none rounded-none z-50 fixed backdrop-saturate-100 ${
           navScrolled
             ? " dark:bg-gray-900"
             : "lg:bg-transparent backdrop-blur-none shadow-none "
@@ -119,7 +119,7 @@ const NavBar = () => {
               to="/"
               className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white"
             >
-              Redux <span className="text-red-500">Movies</span>
+              Redux <span className="text-ourRed">Movies</span>
             </Link>
 
             <div className="hidden lg:block">{navList}</div>
@@ -128,8 +128,7 @@ const NavBar = () => {
             <Button
               variant="filled"
               size="sm"
-              className="hidden lg:inline-block tracking-wider text-white text-sm hover:shadow-none rounded-md shadow-none"
-              color="red"
+              className="hidden bg-ourRed lg:inline-block tracking-wider text-white text-sm hover:shadow-none rounded-md shadow-none"
               onClick={() => setShowSignInModal(true)}
             >
               Sign in
@@ -179,13 +178,12 @@ const NavBar = () => {
             <div className="flex flex-col justify-center items-center gap-2">
               <Button
                 fullWidth
-                color="red"
                 variant="filled"
                 size="sm"
-                className="w-fit"
+                className="w-fit bg-ourRed"
                 onClick={() => setShowSignInModal(true)}
               >
-                <span>Log In</span>
+                <span>SignIn</span>
               </Button>
             </div>
           </div>

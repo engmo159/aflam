@@ -47,14 +47,17 @@ const Search = () => {
           {mediaCategories.map((category, index) => (
             <Button
               key={index}
-              className='uppercase text-sm rounded-md dark:text-white text-black'
-              variant={category == mediaType ? 'filled' : 'text'}
-              color='red'
+              className={`uppercase text-sm rounded-md dark:text-white text-black ${
+                category == mediaType && "text-white"
+              }`}
+              variant={category == mediaType ? "filled" : "text"}
+              color="red"
               onClick={() => {
                 dispatch(setMediaType(category));
                 searchHandler(query, category);
               }}
-              size="md">
+              size="md"
+            >
               {category}
             </Button>
           ))}

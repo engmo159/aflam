@@ -15,14 +15,12 @@ const PosterLayout = ({ header, children }) => {
         >
           {header}
         </Typography>
-        <div className='h-1.5 bg-red-800 w-[7%]' />
+        <div className='h-1.5 bg-ourRed w-24' />
       </div>
       <div className='h-full z-20'>
         <Swiper
           grabCursor={true}
           style={{ width: '100%', height: '100%' }}
-          slidesPerView={5}
-          slidesPerGroup={5}
           spaceBetween={1}
           modules={[Pagination]}
           pagination={{
@@ -30,16 +28,16 @@ const PosterLayout = ({ header, children }) => {
           }}
           breakpoints={{
             640: {
+              slidesPerView: 1,
+              slidesPerGroup: 1,
+            },
+            768: {
               slidesPerView: 2,
               slidesPerGroup: 2,
             },
-            768: {
+            1024: {
               slidesPerView: 3,
               slidesPerGroup: 3,
-            },
-            1024: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
             },
             1280: {
               slidesPerView: 5,

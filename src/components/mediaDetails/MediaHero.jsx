@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import { Button, Typography } from '@material-tailwind/react'
 import { BiSolidRightArrow } from 'react-icons/bi'
@@ -8,6 +7,7 @@ import { FaRegHeart } from 'react-icons/fa6'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { Link } from 'react-router-dom'
+import RadialRatingBar from '../Movies/RadialRatingBar'
 
 const MediaHero = () => {
   const { mediaDetail, castDetail } = useSelector(
@@ -29,23 +29,23 @@ const MediaHero = () => {
         }}
       />
 
-      <div className='h-52 block relative  w-full' />
+      <div className='lg:h-52 h-24 block relative w-full' />
       {/* Main Content */}
 
-      <div className='relative z-20 flex px-[7%] gap-8 w-full '>
+      <div className='lg:relative flex-col lg:flex-row items-center z-20 flex px-[7%] gap-8 w-full '>
         {/* gradient div s  */}
         {/* bottom  */}
 
-        <div className='absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t  from-white to-white/95 dark:from-black dark:to-black z-10' />
+        <div className='absolute inset-x-0 bottom-0 lg:h-3/4 h-[100%] bg-gradient-to-t from-white lg:to-white to-white/90 dark:from-black dark:to-black/90 z-10' />
         {/* top  */}
-        <div className='absolute inset-x-0 top-[4.5rem] h-1/6 bg-gradient-to-t  from-white/60 dark:from-black to-transparent z-10' />
+        <div className='absolute inset-x-0 top-[4.5rem] h-1/6 lg:bg-gradient-to-t from-white from-10% dark:from-black via-white/90 via-30% to-transparent z-10' />
         {/* middle  */}
-        <div className='absolute inset-x-0 top-1/4 h-1/6 bg-gradient-to-t from-white/20 to-white/10 dark:from-black/90 dark:to-black/50  z-10' />
+        <div className='absolute inset-x-0 top-1/4 h-1/6 lg:bg-gradient-to-t from-white/20 to-white/10 dark:from-black/90 dark:to-black/50  z-10' />
 
         {/* end gradient div s  */}
         {/* Media Poster */}
         {posterImage && (
-          <div className='w-[40%] z-20'>
+          <div className='lg:w-[40%] z-20'>
             <img
               src={`${
                 import.meta.env.VITE_BASE_TMDB_POSTER_PATH
@@ -56,28 +56,14 @@ const MediaHero = () => {
           </div>
         )}
         {/* Media Details */}
-        <div className='text-white flex flex-col z-20 gap-12 w-[53%]'>
-          <h1 className='text-6xl font-bold'>
+        <div className='dark:text-white  text-blue-gray-900 flex flex-col z-20 lg:gap-12 gap-8 lg:w-[53%] w-[90%]'>
+          <h1 className='lg:text-6xl text-5xl lg:pt-32 font-bold'>
             {mediaDetail?.title || mediaDetail?.name}
           </h1>
           <div className='flex gap-4 items-center'>
             {/* Rating */}
-            <div className='w-12 h-12'>
-              <CircularProgressbar
-                value={
-                  mediaDetail?.vote_average ? mediaDetail.vote_average * 10 : 0
-                }
-                text={
-                  mediaDetail?.vote_average
-                    ? mediaDetail.vote_average.toFixed(1)
-                    : 'N/A'
-                }
-                styles={buildStyles({
-                  textColor: 'white',
-                  pathColor: 'green',
-                  trailColor: 'transparent',
-                })}
-              />
+            <div className='lg:w-12 lg:h-12 md:w-24 md:h-24'>
+              <RadialRatingBar movie={mediaDetail} />
             </div>
             {/* genre  */}
             <div className='flex gap-2'>
@@ -85,7 +71,7 @@ const MediaHero = () => {
                 <p
                   key={index}
                   color='red'
-                  className='text-sm font-normal bg-red-800 p-2 rounded-xl'
+                  className='lg:text-sm text-2xl text-white font-normal bg-ourRed px-3.5 py-1.5 rounded-3xl'
                 >
                   {genre.name || ''}
                 </p>
@@ -93,21 +79,18 @@ const MediaHero = () => {
             </div>
           </div>
           {/* Overview */}
-          <p className='text-black dark:text-white font-bold'>
+          <p className='text-black dark:text-white font-bold lg:text-lg text-xl'>
             {mediaDetail?.overview}
           </p>
           {/* buttons  */}
           <div className='flex gap-12'>
             {/* heart button  */}
             <button className='flex w-max gap-2 items-center justify-center font-normal text-red-800'>
-              <FaRegHeart className='text-2xl' />
+              <FaRegHeart className='lg:text-2xl text-4xl text-ourRed' />
             </button>
             {/* Watch Now Button */}
             <a href='#video'>
-              <Button
-                color='red'
-                className='flex w-max gap-2 text-md items-center justify-center font-normal'
-              >
+              <Button className='flex w-max gap-2 lg:text-md text-2xl items-center justify-center font-normal bg-ourRed rounded-md'>
                 <BiSolidRightArrow />
                 Watch Now
               </Button>
@@ -122,19 +105,35 @@ const MediaHero = () => {
               >
                 cast
               </Typography>
-              <div className='h-1.5 bg-red-800 w-[20%]' />
+              <div className='h-1.5 bg-ourRed w-[20%]' />
             </div>
             <Swiper
               grabCursor={true}
               loop={true}
               style={{ width: '100%', height: '100%' }}
-              slidesPerView={4}
-              slidesPerGroup={4}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  slidesPerGroup: 1,
+                },
+                768: {
+                  slidesPerView: 2,
+                  slidesPerGroup: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  slidesPerGroup: 3,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  slidesPerGroup: 4,
+                },
+              }}
               spaceBetween={10}
             >
               {castDetail?.length > 0 &&
                 castDetail?.map((cast, index) => (
-                  <SwiperSlide key={index} className='h-52 w-full'>
+                  <SwiperSlide key={index} className='lg:h-52 h-96 w-full'>
                     <Link to={`/person/${cast.id}`}>
                       <div
                         className='h-full w-full bg-center bg-no-repeat flex items-end justify-center rounded-sm'

@@ -38,7 +38,6 @@ const MediaDetails = () => {
     dispatch(getVideoDetails({ mediaCategory: mediaType, mediaId }))
 
     dispatch(getImageDetails({ mediaCategory: mediaType, mediaId }))
-
   }, [mediaId, mediaType, dispatch])
 
   const { pageLoading } = useSelector(state => state.moviesReducer)
@@ -49,15 +48,12 @@ const MediaDetails = () => {
   return (
     <div>
       <MediaHero />
-
-
       <div className='bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16 flex flex-col gap-28'>
         {/* images && videos  */}
         <SliderLayout header='Videos'>
           {videoDetail?.length > 0 &&
             videoDetail?.slice(0, 10).map((media, index) => (
-
-              <SwiperSlide key={index} className='w-full'>
+              <SwiperSlide key={index} className='w-full h-[40rem]'>
                 <VideoSlider media={media} />
               </SwiperSlide>
             ))}
@@ -66,12 +62,16 @@ const MediaDetails = () => {
         <SliderLayout header='backdrops'>
           {backdropDetail?.length > 0 &&
             backdropDetail?.slice(0, 10).map((media, index) => (
-              <SwiperSlide key={index} className='w-full'>
+              <SwiperSlide key={index} className='w-full h-fit'>
                 <img
                   src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
                     media?.file_path
                   }`}
-                  alt={'Movie Poster'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
                 />
               </SwiperSlide>
             ))}
@@ -79,32 +79,36 @@ const MediaDetails = () => {
         <PosterLayout header='posters'>
           {posterDetail?.length > 0 &&
             posterDetail?.slice(0, 10).map((media, index) => (
-              <SwiperSlide key={index} className='w-full'>
+              <SwiperSlide key={index} className='w-full h-full'>
                 <img
                   src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
                     media?.file_path
                   }`}
                   alt={'Movie Poster'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
                 />
               </SwiperSlide>
             ))}
         </PosterLayout>
-        <PosterLayout header='logos'>
+        {/* <PosterLayout header="logos">
           {logoDetail?.length > 0 &&
             logoDetail?.slice(0, 10).map((media, index) => (
-              <SwiperSlide key={index} className='w-full'>
+              <SwiperSlide key={index} className="w-full h-fit">
                 <img
                   src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
                     media?.file_path
                   }`}
-                  alt={'Movie Poster'}
+                  alt={"Movie Poster"}
                 />
               </SwiperSlide>
             ))}
-        </PosterLayout>
+        </PosterLayout> */}
         {/* reviews  */}
         <ReviewSection />
-
       </div>
     </div>
   )

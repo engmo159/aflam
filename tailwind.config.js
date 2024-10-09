@@ -12,6 +12,9 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      colors: {
+        ourRed: "#ff0000",
+      },
       fontFamily: {
         sans: ["Roboto", ...defaultTheme.fontFamily.sans],
       },

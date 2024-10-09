@@ -31,7 +31,7 @@ const Loading = ({ load }) => {
         <BarLoader color='red' width={width / 1.1} />
         <div className='h-full flex justify-center items-center'>
           <span className='mr-4 cursor-pointer py-1.5 font-bold text-4xl text-black dark:text-white'>
-            Redux <span className='text-red-500'>Movies</span>
+            Redux <span className='text-ourRed'>Movies</span>
           </span>
         </div>
       </div>
