@@ -24,7 +24,7 @@ const SeriesPopularSection = () => {
 
       <Button
         onClick={() => dispatch(popularSeriesLoadMore())}
-        className='flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold'
+        className='flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-ourRed text-md hover:shadow-none rounded-sm font-bold'
       >
         {popularSeriesLoading ? (
           <BarLoader color='red' className='my-2.5' />

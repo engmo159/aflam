@@ -18,7 +18,7 @@ const MovieCard = ({ movie, mediaType }) => {
       <Link to={`/${mediaType}/${movie?.id}`}>
         <div className='opacity-0 group-hover:opacity-100 group-hover:duration-500 space-x-2 ease-linear transition flex flex-col justify-center items-center align-middle h-full bg-gradient-to-t from-black to-transparent p-6 '>
           <div className='text-white flex flex-col flex-grow w-full justify-center pt-16 items-center'>
-            <Button className='w-fit bg-red-600 rounded-md shadow-none hover:shadow-none hover:bg-red-700'>
+            <Button className='w-fit bg-ourRed rounded-md shadow-none hover:shadow-none hover:bg-red-700'>
               <FaPlay />
             </Button>
           </div>

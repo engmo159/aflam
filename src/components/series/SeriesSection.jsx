@@ -21,7 +21,7 @@ const SeriesSection = () => {
             variant="text"
             className={`${
               seriesIsItPopular
-                ? `text-white bg-red-600 hover:bg-red-700`
+                ? `text-white bg-ourRed hover:bg-red-700`
                 : `bg-transparent  text-black dark:text-white`
             } text-sm w-fit`}
             onClick={() => dispatch(seriesChangeToPopular())}>
@@ -31,7 +31,7 @@ const SeriesSection = () => {
             variant="text"
             className={`${
               !seriesIsItPopular
-                ? `text-white bg-red-600 hover:bg-red-700`
+                ? `text-white bg-ourRed hover:bg-red-600`
                 : `bg-transparent  text-black dark:text-white`
             } text-sm w-fit`}
             onClick={() => dispatch(seriesChangeToTopRated())}>
