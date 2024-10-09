@@ -13,8 +13,7 @@ import {
   getGenreSeriesList,
   getPopularSeries,
   getTopRatedSeries,
-} from '../redux/slices/seriesSlice'
-import { getPersonDetails } from '../redux/slices/personDetailsSlice'
+} from "../redux/slices/seriesSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,10 +34,8 @@ const Home = () => {
       await Promise.all([
         dispatch(getTopRatedMovies()),
         dispatch(getPopularMovies()),
-        dispatch(getGenreMoviesList()),
         dispatch(getTopRatedSeries()),
         dispatch(getPopularSeries()),
-        dispatch(getGenreSeriesList()),
       ]);
       dispatch(changePageLoading(false));
     };

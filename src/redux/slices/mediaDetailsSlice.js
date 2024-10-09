@@ -1,10 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+// api s
 const api = ({ mediaCategory, mediaId }) => {
   return {
     method: 'GET',
     url: `${import.meta.env.VITE_BASE_TMDB_URL}/${mediaCategory}/${mediaId}`,
+    params: { language: 'en-US' },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
+    },
+  }
+}
+const videoApi = ({ mediaCategory, mediaId }) => {
+  return {
+    method: 'GET',
+    url: `${
+      import.meta.env.VITE_BASE_TMDB_URL
+    }/${mediaCategory}/${mediaId}/videos`,
     params: { language: 'en-US' },
     headers: {
       accept: 'application/json',
@@ -25,6 +38,34 @@ const creditsApi = ({ mediaCategory, mediaId }) => {
     },
   }
 }
+
+const imageApi = ({ mediaCategory, mediaId }) => {
+  return {
+    method: 'GET',
+    url: `${
+      import.meta.env.VITE_BASE_TMDB_URL
+    }/${mediaCategory}/${mediaId}/images`,
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
+    },
+  }
+}
+const reviewApi = ({ mediaCategory, mediaId, page }) => {
+  return {
+    method: 'GET',
+    url: `${
+      import.meta.env.VITE_BASE_TMDB_URL
+    }/${mediaCategory}/${mediaId}/reviews`,
+    params: { language: 'en-US', page },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN} `,
+    },
+  }
+}
+
+// functions
 export const getMediaDetails = createAsyncThunk(
   '/getMediaDetails',
   async ({ mediaCategory, mediaId }, thunkAPI) => {
@@ -51,6 +92,32 @@ export const getCreditDetails = createAsyncThunk(
     }
   }
 )
+export const getVideoDetails = createAsyncThunk(
+  '/getVideoDetails',
+  async ({ mediaCategory, mediaId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI
+    try {
+      const { data } = await axios.request(videoApi({ mediaCategory, mediaId }))
+      return data
+    } catch (e) {
+      return rejectWithValue(e)
+    }
+  }
+)
+
+export const getImageDetails = createAsyncThunk(
+  '/getImageDetails',
+  async ({ mediaCategory, mediaId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI
+    try {
+      const { data } = await axios.request(imageApi({ mediaCategory, mediaId }))
+      return data
+    } catch (e) {
+      return rejectWithValue(e)
+    }
+  }
+)
+
 
 const initialState = {
   mediaDetail: {},
@@ -60,6 +127,20 @@ const initialState = {
   crewDetail: {},
   creditDetailLoading: false,
   creditDetailErr: null,
+  videoDetail: [],
+  videoDetailLoading: false,
+  videoDetailErr: null,
+
+  backdropDetail: [],
+  backdropDetailLoading: false,
+  backdropDetailErr: null,
+  logoDetail: [],
+  logoDetailLoading: false,
+  logoDetailErr: null,
+  posterDetail: [],
+  posterDetailLoading: false,
+  posterDetailErr: null,
+
 }
 const mediaDetailsSlice = createSlice({
   name: 'mediaDetails',
@@ -91,7 +172,44 @@ const mediaDetailsSlice = createSlice({
       state.creditDetailLoading = false
       state.creditDetailErr = action.payload?.message || 'something went error'
     })
+    // get video detail
+    builder.addCase(getVideoDetails.pending, state => {
+      state.videoDetailLoading = true
+    })
+    builder.addCase(getVideoDetails.fulfilled, (state, { payload }) => {
+      state.videoDetailLoading = false
+      state.videoDetail = payload.results
+    })
+    builder.addCase(getVideoDetails.rejected, (state, action) => {
+      state.videoDetailLoading = false
+      state.videoDetailErr = action.payload?.message || 'something went error'
+    })
+
+    // get images detail
+    builder.addCase(getImageDetails.pending, state => {
+      state.backdropDetailLoading = true
+      state.logoDetailLoading = true
+      state.posterDetailLoading = true
+    })
+    builder.addCase(getImageDetails.fulfilled, (state, { payload }) => {
+      state.backdropDetailLoading = false
+      state.logoDetailLoading = false
+      state.posterDetailLoading = false
+      state.backdropDetail = payload.backdrops
+      state.logoDetail = payload.logos
+      state.posterDetail = payload.posters
+    })
+    builder.addCase(getImageDetails.rejected, (state, action) => {
+      state.backdropDetailLoading = false
+      state.logoDetailLoading = false
+      state.posterDetailLoading = false
+      state.backdropDetailErr =
+        action.payload?.message || 'something went error'
+      state.logoDetailErr = action.payload?.message || 'something went error'
+      state.posterDetailErr = action.payload?.message || 'something went error'
+    })
+
   },
 })
 export const mediaDetailReducer = mediaDetailsSlice.reducer
-export const {} = mediaDetailsSlice.actions
+// export const {} = mediaDetailsSlice.actions

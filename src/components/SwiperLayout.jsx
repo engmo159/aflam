@@ -10,7 +10,7 @@ const SwiperLayout = ({ media, mediaType, header }) => {
     <div className='flex flex-col gap-8 px-4 lg:px-20 py-10 h-full overflow-hidden'>
       <div className='flex flex-col gap-1 '>
         <h1 className='font-bold text-3xl'>{header}</h1>
-        <hr className='w-28 border-[3px] border-red-600 ' />
+        <hr className='w-28 border-[3px] border-ourRed ' />
       </div>
       <div className="w-full h-full">
         <Swiper
