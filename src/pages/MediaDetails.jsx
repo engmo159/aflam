@@ -7,7 +7,10 @@ import {
   getCreditDetails,
   getImageDetails,
   getMediaDetails,
+  getRecommendedDetails,
+  getReviewsDetails,
   getVideoDetails,
+  resetVisible,
 } from "../redux/slices/mediaDetailsSlice";
 
 import Loading from "../components/Loading";
@@ -19,6 +22,11 @@ import VideoSlider from "../components/mediaDetails/VideoSlider";
 
 import PosterLayout from "../components/mediaDetails/PosterLayout";
 import ReviewSection from "../components/mediaDetails/ReviewSection";
+import { Typography } from "@material-tailwind/react";
+import RecommendedMovies from "../components/mediaDetails/RecommendedMovies";
+import SwiperLayout from "../components/SwiperLayout";
+import RecommendedSwiper from "../components/mediaDetails/RecommendedSwiper";
+
 const MediaDetails = () => {
   const dispatch = useDispatch();
   const {
@@ -27,6 +35,8 @@ const MediaDetails = () => {
     logoDetail,
     posterDetail,
     backdropDetail,
+    reviewsDetailsVisible,
+    recommendedDetails,
   } = useSelector((state) => state.mediaDetailReducer);
 
   const { mediaType, mediaId } = useParams();
@@ -36,8 +46,12 @@ const MediaDetails = () => {
     dispatch(getMediaDetails({ mediaCategory: mediaType, mediaId }));
     dispatch(getCreditDetails({ mediaCategory: mediaType, mediaId }));
     dispatch(getVideoDetails({ mediaCategory: mediaType, mediaId }));
-
     dispatch(getImageDetails({ mediaCategory: mediaType, mediaId }));
+    dispatch(getReviewsDetails({ mediaCategory: mediaType, mediaId, page: 1 }));
+    dispatch(resetVisible());
+    dispatch(
+      getRecommendedDetails({ mediaCategory: mediaType, mediaId, page: 1 })
+    );
   }, [mediaId, mediaType, dispatch]);
 
   const { pageLoading } = useSelector((state) => state.moviesReducer);
@@ -48,7 +62,7 @@ const MediaDetails = () => {
   return (
     <div>
       <MediaHero />
-      <div className="bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16 flex flex-col gap-28">
+      <div className="bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16 flex flex-col gap-16">
         {/* images && videos  */}
         <SliderLayout header="Videos">
           {videoDetail?.length > 0 &&
@@ -109,6 +123,11 @@ const MediaDetails = () => {
         </PosterLayout> */}
         {/* reviews  */}
         <ReviewSection />
+        <RecommendedSwiper
+          media={recommendedDetails}
+          mediaType="movie"
+          header="you may also like"
+        />
       </div>
     </div>
   );

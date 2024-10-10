@@ -15,12 +15,12 @@ const PosterLayout = ({ header, children }) => {
         >
           {header}
         </Typography>
-        <div className="h-1.5 bg-ourRed w-24" />
+        <div className='h-1.5 bg-ourRed w-24' />
       </div>
       <div className="h-full z-20">
         <Swiper
           grabCursor={true}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: '100%', height: '100%' }}
           spaceBetween={1}
           modules={[Pagination]}
           pagination={{

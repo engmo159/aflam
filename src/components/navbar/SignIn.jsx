@@ -1,5 +1,5 @@
-import { Button, Input } from "@material-tailwind/react";
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+import { Button, Input } from '@material-tailwind/react'
 
 const SignIn = ({ setShowSignIn }) => {
   return (
@@ -18,24 +18,22 @@ const SignIn = ({ setShowSignIn }) => {
         size="lg"
         className="border outline outline-2 outline-gray-800 border-gray-800 hover:border-white hover:outline-white transition-all"
       />
-      <div className="flex flex-col gap-2">
-        <Button fullWidth className="text-md bg-ourRed" size="sm">
+      <div className='flex flex-col gap-2'>
+        <Button fullWidth className='text-md bg-ourRed' size='sm'>
           Sign In
         </Button>
         <Button
           fullWidth
-          className="text-md bg-ourRed hover:bg-ourRed text-white"
-          variant="text"
-          size="sm"
+          className='text-md '
+          variant='text'
+          size='sm'
           onClick={() => setShowSignIn(false)}
         >
           Sign Up
         </Button>
       </div>
     </form>
-  );
-};
-SignIn.propTypes = {
-  setShowSignIn: PropTypes.function,
-};
-export default SignIn;
+  )
+}
+
+export default SignIn

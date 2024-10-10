@@ -1,13 +1,17 @@
-import { Card, Typography } from "@material-tailwind/react";
-import PropTypes from "prop-types";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
-import { useState } from "react";
-const SignLayout = ({ showSignInModal, setShowSignInModal }) => {
+/* eslint-disable react/prop-types */
+import { Card, Typography } from '@material-tailwind/react'
+import SignUp from './SignUp'
+import SignIn from './SignIn'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { switchShowSignInModal } from '../../redux/slices/userAuthSlice'
+const SignLayout = () => {
+  const dispatch = useDispatch()
+  const { showSignInModal } = useSelector(state => state.userAuthReducer)
   // sign in overlay function
-  const handleOverlayClick = (e) => {
-    if (e.target.id === "overlay") {
-      setShowSignInModal(false);
+  const handleOverlayClick = e => {
+    if (e.target.id === 'overlay') {
+      dispatch(switchShowSignInModal())
     }
   };
   // signIn State
@@ -27,7 +31,7 @@ const SignLayout = ({ showSignInModal, setShowSignInModal }) => {
              text-white text-center"
             >
               Redux
-              <span className="text-ourRed"> Movies</span>
+              <span className='text-ourRed'> Movies</span>
             </Typography>
             {showSignIn ? (
               <SignIn setShowSignIn={setShowSignIn} />
@@ -38,10 +42,7 @@ const SignLayout = ({ showSignInModal, setShowSignInModal }) => {
         </div>
       )}
     </div>
-  );
-};
-SignLayout.propTypes = {
-  showSignInModal: PropTypes.bool.isRequired,
-  setShowSignInModal: PropTypes.func.isRequired,
-};
-export default SignLayout;
+  )
+}
+
+export default SignLayout
