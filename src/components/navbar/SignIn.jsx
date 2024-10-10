@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+
   signInFunction,
   signInToastStateReset,
   signUpToastStateReset,
@@ -34,11 +35,13 @@ const SignIn = ({ setShowSignIn }) => {
       transition: Bounce,
       onClose: () => {
         dispatch(signInToastStateReset())
+
       },
     })
   }
 
   useEffect(() => {
+
     dispatch(signInToastStateReset())
     dispatch(signUpToastStateReset())
   }, [dispatch])
@@ -47,6 +50,7 @@ const SignIn = ({ setShowSignIn }) => {
     if (signInToastState) {
       notifySuccess()
       dispatch(switchShowSignInModal())
+
     }
   }, [signInToastState, dispatch])
 

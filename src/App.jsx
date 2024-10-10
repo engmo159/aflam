@@ -10,6 +10,7 @@ import GoToTop from './components/GoToTop'
 import PersonDetails from './pages/PersonDetails'
 import MediaDetails from './pages/MediaDetails'
 import { ToastContainer } from 'react-toastify'
+
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react'
 import { setToken } from './redux/slices/tokenSlice'
@@ -19,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Favorites from './components/userProfile/Favorites'
 import Reviews from './components/userProfile/Reviews'
 import PasswordUpdate from './components/userProfile/PasswordUpdate'
+
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
   const { pageLoading } = useSelector(state => state.moviesReducer)

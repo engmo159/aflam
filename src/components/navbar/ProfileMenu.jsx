@@ -10,6 +10,7 @@ import {
 } from '@material-tailwind/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { FaRegHeart, FaLock } from 'react-icons/fa'
 import { IoIosLogOut } from 'react-icons/io'
 
@@ -19,12 +20,15 @@ import { setToken } from '../../redux/slices/tokenSlice'
 import { toast, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+
 const ProfileMenu = () => {
   const { userData } = useSelector(state => state.userAuthReducer)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { theme } = useSelector(state => state.themeReducer)
+
   const [loggedOut, setLoggedOut] = useState(false)
   const dispatch = useDispatch()
+
   const navigate = useNavigate()
 
   // Toast notification logic
@@ -40,6 +44,7 @@ const ProfileMenu = () => {
       transition: Bounce,
       onClose: () => {
         navigate('/')
+
         dispatch(setToken(null))
         closeMenu()
       },
@@ -47,10 +52,12 @@ const ProfileMenu = () => {
   }
 
   useEffect(() => {
+
     if (loggedOut) {
       notifySuccess()
     }
   }, [loggedOut])
+
 
   const closeMenu = () => {
     setIsMenuOpen(false)
@@ -80,7 +87,9 @@ const ProfileMenu = () => {
         <Link to='/favorites'>
           <MenuItem
             onClick={closeMenu}
+
             className='flex items-center gap-6 hover:bg-red-400 transition-all'
+
           >
             <FaRegHeart className='text-white text-xl' />
             <Typography variant='h6' className='text-white uppercase'>
@@ -92,9 +101,11 @@ const ProfileMenu = () => {
         <Link to='/reviews'>
           <MenuItem
             onClick={closeMenu}
+
             className='flex items-center gap-6 hover:bg-red-400 transition-all'
           >
             <MdReviews className='text-white text-xl' />
+
             <Typography variant='h6' className='text-white uppercase'>
               Reviews
             </Typography>
@@ -104,7 +115,9 @@ const ProfileMenu = () => {
         <Link to='/password-update'>
           <MenuItem
             onClick={closeMenu}
+
             className='flex items-center gap-6 hover:bg-red-400 transition-all'
+
           >
             <FaLock className='text-white text-xl' />
             <Typography variant='h6' className='text-white uppercase'>
@@ -114,10 +127,12 @@ const ProfileMenu = () => {
         </Link>
         {/* Logout */}
         <MenuItem
+
           onClick={() => setLoggedOut(true)}
           className='flex items-center gap-6 hover:bg-red-400 transition-all'
         >
           <IoIosLogOut className='text-white text-xl' />
+
           <Typography variant='h6' className='text-white uppercase'>
             Log Out
           </Typography>
