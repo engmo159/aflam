@@ -7,21 +7,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   signUpFunction,
   switchShowSignInModal,
-  toastStateReset,
+  signUpToastStateReset,
 } from '../../redux/slices/userAuthSlice'
-import { toast, Bounce, ToastContainer } from 'react-toastify'
+import { toast, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react'
 
 const SignUp = ({ setShowSignIn }) => {
   const dispatch = useDispatch()
-  const { signUpErr, signUpLoading, toastState } = useSelector(
+  const { signUpErr, signUpLoading, signUpToastState } = useSelector(
     state => state.userAuthReducer
   )
   const { theme } = useSelector(state => state.themeReducer)
   // toast logic
   const notifySuccess = () => {
-    toast.success('🦄 Wow so easy!', {
+    toast.success('🦄 You Signed Up Successfully!', {
       position: 'bottom-left',
       autoClose: 5000,
       hideProgressBar: false,
@@ -33,18 +33,19 @@ const SignUp = ({ setShowSignIn }) => {
       transition: Bounce,
       onClose: () => {
         dispatch(switchShowSignInModal())
+        dispatch(signUpToastStateReset())
       },
     })
   }
   useEffect(() => {
-    dispatch(toastStateReset())
+    dispatch(signUpToastStateReset())
   }, [])
   useEffect(() => {
-    if (toastState) {
+    if (signUpToastState) {
       notifySuccess()
-      dispatch(toastStateReset())
     }
-  }, [toastState, dispatch])
+  }, [signUpToastState, dispatch])
+
   // YUP validation schema
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -75,7 +76,6 @@ const SignUp = ({ setShowSignIn }) => {
 
   return (
     <>
-      <ToastContainer />
       <form
         className='flex gap-8 flex-col'
         onSubmit={handleSubmit(submitHandler)}
@@ -93,14 +93,14 @@ const SignUp = ({ setShowSignIn }) => {
                 label='Username'
                 type='text'
                 size='lg'
-                error={errors.username}
+                error={errors?.username}
                 className='border outline outline-2 outline-gray-800 border-gray-800 hover:border-white hover:outline-white transition-all'
                 {...field}
               />
             )}
           />
           {errors.username && (
-            <p className='text-red-600'>{errors.username.message}</p>
+            <p className='text-red-600'>{errors?.username.message}</p>
           )}
         </div>
         {/* display name  */}
@@ -122,7 +122,7 @@ const SignUp = ({ setShowSignIn }) => {
             )}
           />
           {errors.displayName && (
-            <p className='text-red-600'>{errors.displayName.message}</p>
+            <p className='text-red-600'>{errors?.displayName.message}</p>
           )}
         </div>
         {/* password */}
@@ -144,7 +144,7 @@ const SignUp = ({ setShowSignIn }) => {
             )}
           />
           {errors.password && (
-            <p className='text-red-600'>{errors.password.message}</p>
+            <p className='text-red-600'>{errors?.password.message}</p>
           )}
         </div>
         {/* confirm password  */}
@@ -159,14 +159,14 @@ const SignUp = ({ setShowSignIn }) => {
                 label='Confirm Password'
                 type='password'
                 size='lg'
-                error={errors.confirmPassword}
+                error={errors?.confirmPassword}
                 className='border outline outline-2 outline-gray-800 border-gray-800 hover:border-white hover:outline-white transition-all'
                 {...field}
               />
             )}
           />
           {errors.confirmPassword && (
-            <p className='text-red-600'>{errors.confirmPassword.message}</p>
+            <p className='text-red-600'>{errors?.confirmPassword.message}</p>
           )}
         </div>
         <div className='flex flex-col gap-2'>

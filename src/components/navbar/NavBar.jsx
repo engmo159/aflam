@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../../redux/slices/themeSlice'
 import SignLayout from './SignLayout'
 import { switchShowSignInModal } from '../../redux/slices/userAuthSlice'
+import ProfileMenu from './ProfileMenu'
 
 const NavBar = () => {
   const [openNav, setOpenNav] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
   const { theme } = useSelector(state => state.themeReducer)
-
+  const { token } = useSelector(state => state.tokenReducer)
   const dispatch = useDispatch()
   useEffect(() => {
     const handleScroll = () => {
@@ -125,14 +126,18 @@ const NavBar = () => {
             <div className='hidden lg:block'>{navList}</div>
           </div>
           <div className='flex items-center justify-center gap-x-1'>
-            <Button
-              variant='filled'
-              size='sm'
-              className='hidden bg-ourRed lg:inline-block tracking-wider text-white text-sm hover:shadow-none rounded-md shadow-none'
-              onClick={() => dispatch(switchShowSignInModal())}
-            >
-              Sign in
-            </Button>
+            {token ? (
+              <ProfileMenu />
+            ) : (
+              <Button
+                variant='filled'
+                size='sm'
+                className='hidden bg-ourRed lg:inline-block tracking-wider text-white text-sm hover:shadow-none rounded-md shadow-none'
+                onClick={() => dispatch(switchShowSignInModal())}
+              >
+                Sign in
+              </Button>
+            )}
           </div>
           <IconButton
             variant='text'
@@ -176,15 +181,19 @@ const NavBar = () => {
           <div className='flex md:flex-col justify-between container mx-auto'>
             {navList}
             <div className='flex flex-col justify-center items-center gap-2'>
-              <Button
-                fullWidth
-                variant='filled'
-                size='sm'
-                className='w-fit bg-ourRed'
-                onClick={() => dispatch(switchShowSignInModal())}
-              >
-                <span>SignIn</span>
-              </Button>
+              {token ? (
+                <ProfileMenu />
+              ) : (
+                <Button
+                  fullWidth
+                  variant='filled'
+                  size='sm'
+                  className='w-fit bg-ourRed'
+                  onClick={() => dispatch(switchShowSignInModal())}
+                >
+                  <span>SignIn</span>
+                </Button>
+              )}
             </div>
           </div>
         </Collapse>
