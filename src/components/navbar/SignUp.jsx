@@ -32,7 +32,7 @@ const SignUp = ({ setShowSignIn }) => {
       theme,
       transition: Bounce,
       onClose: () => {
-        dispatch(switchShowSignInModal())
+
         dispatch(signUpToastStateReset())
       },
     })
@@ -43,6 +43,9 @@ const SignUp = ({ setShowSignIn }) => {
   useEffect(() => {
     if (signUpToastState) {
       notifySuccess()
+
+      dispatch(switchShowSignInModal())
+
     }
   }, [signUpToastState, dispatch])
 
