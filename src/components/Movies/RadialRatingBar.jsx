@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const RadialRatingBar = ({ movie }) => {
   const { theme } = useSelector((state) => state.themeReducer);
   return (
-    <div className="relative lg:w-14 md-w-2 lg:h-14 ">
+    <div className="relative w-14 md-w-2 h-14 ">
       <svg className="w-full h-full" viewBox="0 0 100 100">
         <circle
           className="text-transparent stroke-current"

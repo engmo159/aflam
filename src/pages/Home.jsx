@@ -1,35 +1,35 @@
-import { useEffect } from 'react'
-import Hero from '../components/Hero'
-import SwiperLayout from '../components/SwiperLayout'
-import Loading from '../components/Loading'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from "react";
+import Hero from "../components/Hero";
+import SwiperLayout from "../components/SwiperLayout";
+import Loading from "../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changePageLoading,
   getPopularMovies,
   getTopRatedMovies,
-} from '../redux/slices/moviesSlice'
+} from "../redux/slices/moviesSlice";
 import {
   getGenreSeriesList,
   getPopularSeries,
   getTopRatedSeries,
-} from '../redux/slices/seriesSlice'
+} from "../redux/slices/seriesSlice";
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { popularSeries, topRatedSeries } = useSelector(
-    state => state.seriesReducer
-  )
+    (state) => state.seriesReducer
+  );
   const {
     pageLoading,
     popularMovies,
     topRatedMovies,
     popularMoviesLoading,
     genreMovieList,
-  } = useSelector(state => state.moviesReducer)
+  } = useSelector((state) => state.moviesReducer);
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(changePageLoading(true))
+      dispatch(changePageLoading(true));
       await Promise.all([
         dispatch(getTopRatedMovies()),
         dispatch(getPopularMovies()),
@@ -42,46 +42,46 @@ const Home = () => {
 
     dispatch(changePageLoading(false))
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    dispatch(changePageLoading(true))
-  }, [])
+    dispatch(changePageLoading(true));
+  }, []);
 
   if (pageLoading) {
-    return <Loading load={popularMoviesLoading} />
+    return <Loading load={popularMoviesLoading} />;
   }
   return (
     <div>
       <Hero
         displayedItems={popularMovies}
         genre={genreMovieList}
-        mediaType='movie'
+        mediaType="movie"
       />
 
       <SwiperLayout
         media={popularMovies}
-        mediaType='movie'
-        header='Popular Movies'
+        mediaType="movie"
+        header="Popular Movies"
       />
       <SwiperLayout
         media={popularSeries}
-        mediaType='tv'
-        header='Popular Series'
+        mediaType="tv"
+        header="Popular Series"
       />
       <SwiperLayout
         media={topRatedMovies}
-        mediaType='movie'
-        header='Top Rated Movies'
+        mediaType="movie"
+        header="Top Rated Movies"
       />
       <SwiperLayout
         media={topRatedSeries}
-        mediaType='tv'
-        header='Top Rated Series'
+        mediaType="tv"
+        header="Top Rated Series"
       />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

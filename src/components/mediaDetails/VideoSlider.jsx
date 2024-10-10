@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const VideoSlider = ({ media }) => {
   const { videoDetailLoading } = useSelector(state => state.mediaDetailReducer)
   if (videoDetailLoading) {
-    return <span className='loader'></span>
+    return <span className="loader"></span>;
   }
   return (
     <div className='h-full w-full' id='video'>
@@ -16,11 +16,11 @@ const VideoSlider = ({ media }) => {
         title={media.name || 'Video'}
         width='100%'
         allowFullScreen
-        loading='lazy'
+        loading="lazy"
         style={{ border: 0 }}
       ></iframe>
     </div>
-  )
-}
+  );
+};
 
-export default VideoSlider
+export default VideoSlider;
