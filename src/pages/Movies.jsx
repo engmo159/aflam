@@ -31,7 +31,7 @@ const Movies = () => {
   }
 
   return (
-    <div>
+    <div className='pb-10'>
       <Hero
         displayedItems={popularMovies}
         genre={genreMovieList}
