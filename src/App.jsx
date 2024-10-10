@@ -9,18 +9,35 @@ import Footer from './components/Footer'
 import GoToTop from './components/GoToTop'
 import PersonDetails from './pages/PersonDetails'
 import MediaDetails from './pages/MediaDetails'
+import { ToastContainer, Bounce } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
-  const { theme } = useSelector((state) => state.themeReducer);
-  const { pageLoading } = useSelector((state) => state.moviesReducer);
+  const { theme } = useSelector(state => state.themeReducer)
+  const { pageLoading } = useSelector(state => state.moviesReducer)
   return (
     <div
       className={`${
-        theme === "dark"
-          ? "bg-black text-white dark"
-          : "bg-[#f5f5f5] text-black"
-      } min-h-screen font-sans`}>
+        theme === 'dark'
+          ? 'bg-black text-white dark'
+          : 'bg-[#f5f5f5] text-black'
+      } min-h-screen font-sans`}
+    >
       <NavBar />
+      <ToastContainer
+        position='bottom-left'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={theme}
+        transition={Bounce}
+      />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movie' element={<Movies />} />
@@ -32,7 +49,7 @@ const App = () => {
       <Footer />
       {!pageLoading && <GoToTop />}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
