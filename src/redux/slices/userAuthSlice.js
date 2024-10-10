@@ -57,7 +57,6 @@ const initialState = {
   showSignInModal: false,
   signUpToastState: false,
   signInToastState: false,
-  loggedOutToastState: false,
   userInfoErr: null,
   userInfoLoading: false,
 }
@@ -73,12 +72,6 @@ const userAuthSlice = createSlice({
     },
     signUpToastStateReset: state => {
       state.signUpToastState = false
-    },
-    logOutToastStateReset: state => {
-      state.loggedOutToastState = false
-    },
-    logOutToastFire: state => {
-      state.loggedOutToastState = true
     },
   },
   extraReducers: builder => {
@@ -139,7 +132,5 @@ export const userAuthReducer = userAuthSlice.reducer
 export const {
   switchShowSignInModal,
   signInToastStateReset,
-  logOutToastFire,
   signUpToastStateReset,
-  logOutToastStateReset,
 } = userAuthSlice.actions
