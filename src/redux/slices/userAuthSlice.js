@@ -48,6 +48,28 @@ export const getUserInfo = createAsyncThunk(
   }
 )
 
+export const changePasswordFunction = createAsyncThunk(
+  'auth/changePasswordFunction',
+  async ({ token, password, newPassword, confirmNewPassword }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI
+    try {
+      const response = await api.put(
+        '/user/update-password',
+        { password, newPassword, confirmNewPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      return response.data
+    } catch (e) {
+      console.error('Error changing password:', e)
+      return rejectWithValue(e.response?.data || 'Change password failed')
+    }
+  }
+)
+
 const initialState = {
   userData: null,
   signUpLoading: false,
@@ -58,8 +80,12 @@ const initialState = {
   signUpToastState: false,
   signInToastState: false,
 
+  changePasswordToastState: false,
+
   userInfoErr: null,
   userInfoLoading: false,
+  updatePasswordLoading: false,
+  updatePasswordErr: null,
 }
 const userAuthSlice = createSlice({
   name: 'auth',
@@ -73,6 +99,10 @@ const userAuthSlice = createSlice({
     },
     signUpToastStateReset: state => {
       state.signUpToastState = false
+
+    },
+    changePasswordToastStateReset: state => {
+      state.changePasswordToastState = false
 
     },
   },
@@ -128,6 +158,21 @@ const userAuthSlice = createSlice({
       state.userInfoLoading = false
       state.userInfoErr = action.payload.message || 'something went error'
     })
+    // update password
+    builder.addCase(changePasswordFunction.pending, state => {
+      state.updatePasswordLoading = true
+      state.changePasswordToastState = false
+    })
+    builder.addCase(changePasswordFunction.fulfilled, state => {
+      state.updatePasswordLoading = false
+      state.changePasswordToastState = true
+    })
+
+    builder.addCase(changePasswordFunction.rejected, (state, action) => {
+      state.updatePasswordLoading = false
+      state.changePasswordToastState = false
+      state.updatePasswordErr = action.payload.message || 'something went error'
+    })
   },
 })
 export const userAuthReducer = userAuthSlice.reducer
@@ -136,5 +181,7 @@ export const {
   signInToastStateReset,
 
   signUpToastStateReset,
+
+  changePasswordToastStateReset,
 
 } = userAuthSlice.actions
