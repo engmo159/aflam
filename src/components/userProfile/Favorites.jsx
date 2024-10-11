@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
 import { useEffect } from 'react'
 import { changePageLoading } from '../../redux/slices/moviesSlice'
-
 import { Typography } from '@material-tailwind/react'
 import { getFavoriteMedia } from '../../redux/slices/favoriteSlice'
 import MovieCard from '../Movies/MovieCard'
-
 const Favorites = () => {
   const { pageLoading } = useSelector(state => state.moviesReducer)
   const { favoriteData, favoriteErr } = useSelector(
@@ -20,12 +18,10 @@ const Favorites = () => {
     dispatch(changePageLoading(true))
 
     dispatch(getFavoriteMedia(token))
-
-  }, [])
+  }, [token])
   if (pageLoading) {
     return <Loading load={''} />
   }
-
 
   return (
     <div className='h-screen mx-[5%] pt-[7%]'>
@@ -42,7 +38,6 @@ const Favorites = () => {
       {favoriteData?.length > 0 && <MovieCard />}
     </div>
   )
-
 }
 
 export default Favorites
