@@ -75,11 +75,17 @@ const initialState = {
   deleteFavoriteLoading: false,
   deleteFavoriteErr: null,
   deleteFavoriteToastState: false,
+  isDeletingFavorites: [],
 }
 const favoriteSlice = createSlice({
   name: 'favorite',
   initialState,
-  reducers: {},
+  reducers: {
+    setDeletingFavoritesLoading(state, action) {
+      const { index, loading } = action.payload
+      state.isDeletingFavorites[index] = loading
+    },
+  },
   extraReducers: builder => {
     // get user favorite
     builder.addCase(getFavoriteMedia.pending, state => {
@@ -134,4 +140,4 @@ const favoriteSlice = createSlice({
   },
 })
 export const favoriteReducer = favoriteSlice.reducer
-// export const {} = favoriteSlice.actions
+export const { setDeletingFavoritesLoading } = favoriteSlice.actions

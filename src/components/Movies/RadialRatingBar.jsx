@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
 import { useSelector } from 'react-redux'
 
 const RadialRatingBar = ({ movie }) => {
@@ -39,7 +38,7 @@ const RadialRatingBar = ({ movie }) => {
           textAnchor='middle'
           alignmentBaseline='middle'
         >
-          {Math.round(movie?.vote_average * 10) / 10}
+          {Math.round(movie?.vote_average * 10) / 10 || ''}
         </text>
       </svg>
     </div>
