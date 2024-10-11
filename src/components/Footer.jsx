@@ -1,5 +1,6 @@
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
@@ -7,40 +8,35 @@ const Footer = () => {
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white dark:bg-[#131313] text-center md:justify-between">
         <Link
           to="/"
-          className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white"
-        >
-          Redux <span className="text-ourRed">Movies</span>
+          className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white">
+          <img src={logo} alt="Description of image" className="w-fit h-6" />
         </Link>
         <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
           <li>
             <Typography
               variant="paragraph"
-              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white"
-            >
+              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white">
               <Link to={"/"}>HOME</Link>
             </Typography>
           </li>
           <li>
             <Typography
               variant="paragraph"
-              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white"
-            >
+              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white">
               <Link to={"/movie"}>MOVIES</Link>
             </Typography>
           </li>
           <li>
             <Typography
               variant="paragraph"
-              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white"
-            >
+              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white">
               <Link to={"/tv"}>TV SERIES</Link>
             </Typography>
           </li>
           <li>
             <Typography
               variant="paragraph"
-              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white"
-            >
+              className="font-semibold transition-colors hover:text-ourRed focus:text-ourRed dark:hover:text-ourRed dark:focus:text-ourRed text-blue-gray-900 dark:text-white">
               <Link to={"/search"}>SEARCH</Link>
             </Typography>
           </li>

@@ -3,6 +3,7 @@ import { BarLoader } from 'react-spinners'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changePageLoading } from '../redux/slices/moviesSlice'
+import logo from "../assets/logo.png";
 
 const Loading = ({ load }) => {
   const [width, setWidth] = useState(window.innerWidth)
@@ -27,11 +28,15 @@ const Loading = ({ load }) => {
 
   return (
     (pageLoading || load) && (
-      <div className='flex flex-col pt-14 justify-between items-center h-screen '>
+      <div className='flex flex-col pt-16 justify-between items-center h-screen '>
         <BarLoader color='red' width={width / 1.1} />
         <div className='h-full flex justify-center items-center'>
           <span className='mr-4 cursor-pointer py-1.5 font-bold text-4xl text-black dark:text-white'>
-            Redux <span className='text-ourRed'>Movies</span>
+          <img
+                src={logo}
+                alt="Description of image"
+                className="w-fit h-10"
+              />
           </span>
         </div>
       </div>
