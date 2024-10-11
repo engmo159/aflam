@@ -19,6 +19,7 @@ export const signUpFunction = createAsyncThunk(
     }
   }
 )
+
 export const signInFunction = createAsyncThunk(
   '/signInFunction',
   async (userData, thunkAPI) => {
@@ -99,11 +100,9 @@ const userAuthSlice = createSlice({
     },
     signUpToastStateReset: state => {
       state.signUpToastState = false
-
     },
     changePasswordToastStateReset: state => {
       state.changePasswordToastState = false
-
     },
   },
   extraReducers: builder => {
@@ -183,5 +182,4 @@ export const {
   signUpToastStateReset,
 
   changePasswordToastStateReset,
-
 } = userAuthSlice.actions
