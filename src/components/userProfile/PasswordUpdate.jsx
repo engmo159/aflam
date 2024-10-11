@@ -1,3 +1,4 @@
+
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
 import { useEffect } from 'react'
@@ -187,6 +188,7 @@ const PasswordUpdate = () => {
       </form>
     </div>
   )
+
 }
 
 export default PasswordUpdate
