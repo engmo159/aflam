@@ -80,9 +80,7 @@ const initialState = {
   showSignInModal: false,
   signUpToastState: false,
   signInToastState: false,
-
   changePasswordToastState: false,
-
   userInfoErr: null,
   userInfoLoading: false,
   updatePasswordLoading: false,
@@ -178,8 +176,6 @@ export const userAuthReducer = userAuthSlice.reducer
 export const {
   switchShowSignInModal,
   signInToastStateReset,
-
   signUpToastStateReset,
-
   changePasswordToastStateReset,
 } = userAuthSlice.actions
