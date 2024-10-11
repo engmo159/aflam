@@ -104,6 +104,10 @@ const userAuthSlice = createSlice({
     changePasswordToastStateReset: state => {
       state.changePasswordToastState = false
     },
+    changePasswordToastStateReset: state => {
+      state.changePasswordToastState = false
+
+    },
   },
   extraReducers: builder => {
     // sign up
@@ -182,4 +186,5 @@ export const {
   signUpToastStateReset,
 
   changePasswordToastStateReset,
+
 } = userAuthSlice.actions
