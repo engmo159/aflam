@@ -2,79 +2,20 @@
 import 'react-circular-progressbar/dist/styles.css'
 import { Button, Typography } from '@material-tailwind/react'
 import { BiSolidRightArrow } from 'react-icons/bi'
-import { useDispatch, useSelector } from 'react-redux'
-import { FaRegHeart } from 'react-icons/fa6'
+import { useSelector } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { Link } from 'react-router-dom'
 import RadialRatingBar from '../Movies/RadialRatingBar'
-import { useEffect, useState } from 'react'
-import {
-  addFavoriteMedia,
-  deleteFavoriteMedia,
-  getFavoriteMedia,
-} from '../../redux/slices/favoriteSlice'
-import { FaHeart } from 'react-icons/fa'
+
+import FavoritesButton from '../userProfile/FavoritesButton'
 
 const MediaHero = ({ mediaType, mediaId }) => {
-  const dispatch = useDispatch()
   const { mediaDetail, castDetail } = useSelector(
     state => state.mediaDetailReducer
   )
-  const { token } = useSelector(state => state.tokenReducer)
   const backdropImage = mediaDetail?.backdrop_path || mediaDetail?.poster_path
   const posterImage = mediaDetail?.poster_path
-  const favoriteMediaParams = {
-    token,
-    mediaType,
-    mediaId,
-    mediaTitle: mediaDetail?.title || mediaDetail?.name,
-    mediaPoster: posterImage,
-    mediaRate: Math.round(mediaDetail?.vote_average * 10) / 10,
-  }
-  const {
-    favoriteData,
-    favoriteLoading,
-    addFavoriteLoading,
-    deleteFavoriteLoading,
-  } = useSelector(state => state.favoriteReducer)
-
-  const [isFavorite, setIsFavorite] = useState(false)
-  // initialize isFavorite state
-  useEffect(() => {
-    if (mediaDetail && Array.isArray(favoriteData)) {
-      const isFav = favoriteData.some(
-        favorite => favorite.mediaId === String(mediaDetail.id)
-      )
-      setIsFavorite(isFav)
-    }
-  }, [mediaDetail, favoriteData])
-
-  // get favorite media at mount
-  useEffect(() => {
-    if (token) {
-      dispatch(getFavoriteMedia(token))
-    }
-  }, [dispatch, token])
-
-  const handleFavoriteToggle = async () => {
-    const favorite = favoriteData?.find(
-      favoriteOne => favoriteOne.mediaId === mediaId
-    )
-
-    try {
-      if (favorite && isFavorite) {
-        await dispatch(deleteFavoriteMedia({ token, favoriteId: favorite.id }))
-        setIsFavorite(false)
-      } else {
-        await dispatch(addFavoriteMedia(favoriteMediaParams))
-        setIsFavorite(true)
-      }
-    } catch (error) {
-      console.error('Failed to update favorite:', error)
-    }
-  }
-
   return (
     <div className='relative overflow-hidden'>
       {/* Fixed Background Image */}
@@ -148,21 +89,7 @@ const MediaHero = ({ mediaType, mediaId }) => {
           {/* buttons  */}
           <div className='flex gap-12'>
             {/* heart button  */}
-            <button
-              className='flex w-max gap-2 items-center justify-center font-normal text-red-800'
-              onClick={() => handleFavoriteToggle()}
-            >
-              {addFavoriteLoading ||
-              deleteFavoriteLoading ||
-              favoriteLoading ? (
-                <span className='btnLoader'></span>
-              ) : isFavorite ? (
-                <FaHeart className='lg:text-2xl text-4xl text-ourRed' />
-              ) : (
-                <FaRegHeart className='lg:text-2xl text-4xl text-ourRed' />
-              )}
-            </button>
-
+            <FavoritesButton mediaType={mediaType} mediaId={mediaId} />
             {/* Watch Now Button */}
             <a href='#video'>
               <Button className='flex w-max gap-2 lg:text-md text-2xl items-center justify-center font-normal bg-ourRed rounded-md'>

@@ -88,5 +88,4 @@ const Hero = ({ displayedItems, genre, mediaType }) => {
     </div>
   )
 }
-
 export default Hero
