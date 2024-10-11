@@ -28,7 +28,6 @@ const Hero = ({ displayedItems, genre, mediaType }) => {
         slidesPerGroup={1}
         autoplay={{
           delay: 10000,
-
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         }}

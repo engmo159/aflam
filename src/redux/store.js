@@ -9,6 +9,7 @@ import { mediaDetailReducer } from './slices/mediaDetailsSlice'
 import { personDetailsReducer } from './slices/personDetailsSlice'
 import { userAuthReducer } from './slices/userAuthSlice'
 import { tokenReducer } from './slices/tokenSlice'
+import { favoriteReducer } from './slices/favoriteSlice'
 
 //persist reducer config
 const persistConfig = {
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   mediaDetailReducer,
   personDetailsReducer,
   userAuthReducer,
+  favoriteReducer,
 })
 // default reducer + persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
