@@ -8,22 +8,26 @@ import { searchReducer } from './slices/searchSlice'
 import { mediaDetailReducer } from './slices/mediaDetailsSlice'
 import { personDetailsReducer } from './slices/personDetailsSlice'
 import { userAuthReducer } from './slices/userAuthSlice'
+import { tokenReducer } from './slices/tokenSlice'
+import { favoriteReducer } from './slices/favoriteSlice'
 
 //persist reducer config
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['themeReducer'],
+  whitelist: ['themeReducer', 'tokenReducer'],
 }
 // default reducer
 const rootReducer = combineReducers({
   themeReducer,
+  tokenReducer,
   moviesReducer,
   seriesReducer,
   searchReducer,
   mediaDetailReducer,
   personDetailsReducer,
   userAuthReducer,
+  favoriteReducer,
 })
 // default reducer + persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
