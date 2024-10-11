@@ -20,12 +20,10 @@ const Favorites = () => {
     dispatch(changePageLoading(true))
 
     dispatch(getFavoriteMedia(token))
-
-  }, [])
+  }, [token])
   if (pageLoading) {
     return <Loading load={''} />
   }
-
 
   return (
     <div className='h-screen mx-[5%] pt-[7%]'>
@@ -42,7 +40,6 @@ const Favorites = () => {
       {favoriteData?.length > 0 && <MovieCard />}
     </div>
   )
-
 }
 
 export default Favorites
