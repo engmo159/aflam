@@ -98,7 +98,9 @@ const MediaHero = ({ mediaType, mediaId }) => {
 
         <div className='absolute inset-x-0 bottom-0 lg:h-3/4 h-[100%] bg-gradient-to-t from-white lg:to-white to-white/90 dark:from-black dark:to-black/90 z-10' />
         {/* top  */}
-        <div className='absolute inset-x-0 top-[5rem] h-1/6 lg:bg-gradient-to-t from-white from-10% dark:from-black via-white/90 via-30% to-transparent z-10' />
+
+        <div className="absolute inset-x-0 top-[5.1rem] h-1/6 lg:bg-gradient-to-t from-white from-10% dark:from-black via-white/90 via-30% to-transparent z-10" />
+
         {/* middle  */}
         <div className='absolute inset-x-0 top-1/4 h-1/6 lg:bg-gradient-to-t from-white/20 to-white/10 dark:from-black/90 dark:to-black/50  z-10' />
 
