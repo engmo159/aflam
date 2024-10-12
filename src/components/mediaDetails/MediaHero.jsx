@@ -62,7 +62,7 @@ const MediaHero = ({ mediaType, mediaId }) => {
         {/* Media Details */}
         <div className='dark:text-white  text-blue-gray-900 flex flex-col z-20 lg:gap-12 gap-8 lg:w-[53%] w-[90%]'>
           <h1 className='lg:text-6xl text-5xl lg:pt-32 font-bold'>
-            {mediaDetail?.title || mediaDetail?.name}
+            {mediaDetail?.title || mediaDetail?.name || ''}
           </h1>
           <div className='flex gap-4 items-center'>
             {/* Rating */}
@@ -84,7 +84,7 @@ const MediaHero = ({ mediaType, mediaId }) => {
           </div>
           {/* Overview */}
           <p className='text-black dark:text-white font-bold lg:text-lg text-xl'>
-            {mediaDetail?.overview}
+            {mediaDetail?.overview || ''}
           </p>
           {/* buttons  */}
           <div className='flex gap-12'>
@@ -148,7 +148,7 @@ const MediaHero = ({ mediaType, mediaId }) => {
                       >
                         {/* title  */}
                         <h1 className=' text-white text-center overflow-hidden py-2 w-full bg-black/40'>
-                          {cast?.name}
+                          {cast?.name || ''}
                         </h1>
                       </div>
                     </Link>

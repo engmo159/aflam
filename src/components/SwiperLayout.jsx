@@ -5,14 +5,18 @@ import 'swiper/css/pagination'
 import { Pagination } from 'swiper/modules'
 import MovieCard from './Movies/MovieCard'
 
-const SwiperLayout = ({ media, mediaType, header }) => {
+const SwiperLayout = ({ media, mediaType, header, collectionStyle }) => {
   return (
-    <div className='flex flex-col gap-8 px-4 lg:px-20 py-10 h-full overflow-hidden'>
+    <div
+      className={`flex flex-col gap-8 px-4  py-10 h-full overflow-hidden  ${
+        collectionStyle ? 'lg:px-0' : 'lg:px-20'
+      }`}
+    >
       <div className='flex flex-col gap-1 '>
         <h1 className='font-bold text-3xl'>{header}</h1>
         <hr className='w-28 border-[3px] border-ourRed ' />
       </div>
-      <div className="w-full h-full">
+      <div className='w-full h-full'>
         <Swiper
           lazy='true'
           breakpoints={{
@@ -36,7 +40,8 @@ const SwiperLayout = ({ media, mediaType, header }) => {
           //   clickable: true,
           // }}
           modules={[Pagination]}
-          className="mySwiper">
+          className='mySwiper'
+        >
           {media?.map((movie, index) => (
             <SwiperSlide key={index}>
               <div>
@@ -47,7 +52,7 @@ const SwiperLayout = ({ media, mediaType, header }) => {
         </Swiper>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SwiperLayout;
+export default SwiperLayout

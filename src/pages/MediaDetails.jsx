@@ -24,6 +24,9 @@ import PosterLayout from '../components/mediaDetails/PosterLayout'
 import ReviewSection from '../components/mediaDetails/ReviewSection'
 
 import RecommendedSwiper from '../components/mediaDetails/RecommendedSwiper'
+import Seasons from '../components/mediaDetails/Seasons'
+import { Typography } from '@material-tailwind/react'
+import MovieCollection from '../components/mediaDetails/MovieCollection'
 
 const MediaDetails = () => {
   const dispatch = useDispatch()
@@ -33,6 +36,7 @@ const MediaDetails = () => {
     posterDetail,
     backdropDetail,
     recommendedDetails,
+    mediaDetail,
   } = useSelector(state => state.mediaDetailReducer)
 
   const { mediaType, mediaId } = useParams()
@@ -59,18 +63,27 @@ const MediaDetails = () => {
     <div>
       <MediaHero mediaType={mediaType} mediaId={mediaId} />
       <div className='bg-white text-black dark:bg-black dark:text-white w-full z-10 relative px-[5%] pt-16 flex flex-col gap-16'>
+        {/* seasons  */}
+        {mediaType == 'tv' ? (
+          <Seasons mediaType={mediaType} mediaId={mediaId} />
+        ) : (
+          mediaDetail?.belongs_to_collection && <MovieCollection />
+        )}
         {/* images && videos  */}
         <SliderLayout header='Videos'>
-          {videoDetail?.length > 0 &&
+          {videoDetail?.length > 0 ? (
             videoDetail?.slice(0, 10).map((media, index) => (
               <SwiperSlide key={index} className='w-full h-[40rem]'>
                 <VideoSlider media={media} />
               </SwiperSlide>
-            ))}
+            ))
+          ) : (
+            <div className='w-full py-10 text-xl'>No videos yet.</div>
+          )}
         </SliderLayout>
 
         <SliderLayout header='backdrops'>
-          {backdropDetail?.length > 0 &&
+          {backdropDetail?.length > 0 ? (
             backdropDetail?.slice(0, 10).map((media, index) => (
               <SwiperSlide key={index} className='w-full h-fit'>
                 <img
@@ -84,9 +97,12 @@ const MediaDetails = () => {
                   }}
                 />
               </SwiperSlide>
-            ))}
+            ))
+          ) : (
+            <div className='w-full py-10 text-xl'>No backdrops yet.</div>
+          )}
         </SliderLayout>
-        <PosterLayout header='posters'>
+        {/* <PosterLayout header='posters'>
           {posterDetail?.length > 0 &&
             posterDetail?.slice(0, 10).map((media, index) => (
               <SwiperSlide key={index} className='w-full h-full'>
@@ -103,20 +119,8 @@ const MediaDetails = () => {
                 />
               </SwiperSlide>
             ))}
-        </PosterLayout>
-        {/* <PosterLayout header="logos">
-          {logoDetail?.length > 0 &&
-            logoDetail?.slice(0, 10).map((media, index) => (
-              <SwiperSlide key={index} className="w-full h-fit">
-                <img
-                  src={`${import.meta.env.VITE_BASE_TMDB_POSTER_PATH}${
-                    media?.file_path
-                  }`}
-                  alt={"Movie Poster"}
-                />
-              </SwiperSlide>
-            ))}
         </PosterLayout> */}
+
         {/* reviews  */}
         <ReviewSection mediaType={mediaType} />
         <RecommendedSwiper

@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Favorites from './components/userProfile/Favorites'
 import Reviews from './components/userProfile/Reviews'
 import PasswordUpdate from './components/userProfile/PasswordUpdate'
+import SeasonDetails from './components/mediaDetails/SeasonDetails'
 
 const App = () => {
   const { theme } = useSelector(state => state.themeReducer)
@@ -53,6 +54,10 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/movie' element={<Movies />} />
         <Route path='/:mediaType/:mediaId' element={<MediaDetails />} />
+        <Route
+          path='/:mediaType/:mediaId/season/:season_number'
+          element={<SeasonDetails />}
+        />
         <Route path='/person/:personId' element={<PersonDetails />} />
         <Route path='/tv' element={<Tv />} />
         <Route path='/search' element={<Search />} />
