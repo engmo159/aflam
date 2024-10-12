@@ -36,11 +36,11 @@ const Home = () => {
         dispatch(getTopRatedSeries()),
         dispatch(getPopularSeries()),
         dispatch(getGenreSeriesList()),
-      ])
-      dispatch(changePageLoading(false))
-    }
+      ]);
+      dispatch(changePageLoading(false));
+    };
 
-    dispatch(changePageLoading(false))
+    dispatch(changePageLoading(false));
 
     fetchData();
   }, []);
