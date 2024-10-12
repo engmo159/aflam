@@ -30,10 +30,8 @@ const MediaDetails = () => {
   const {
     videoDetail,
     mediaDetailLoading,
-
     posterDetail,
     backdropDetail,
-
     recommendedDetails,
   } = useSelector(state => state.mediaDetailReducer)
 
@@ -120,7 +118,7 @@ const MediaDetails = () => {
             ))}
         </PosterLayout> */}
         {/* reviews  */}
-        <ReviewSection />
+        <ReviewSection mediaType={mediaType} />
         <RecommendedSwiper
           media={recommendedDetails}
           mediaType='movie'
