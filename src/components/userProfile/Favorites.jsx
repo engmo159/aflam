@@ -18,7 +18,9 @@ const Favorites = () => {
   )
   const { token } = useSelector(state => state.tokenReducer)
 
-  const dispatch = useDispatch(deleteFavoriteMedia())
+
+  const dispatch = useDispatch()
+
 
   useEffect(() => {
     dispatch(changePageLoading(true))
