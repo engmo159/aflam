@@ -13,13 +13,17 @@ const AddReview = ({ mediaType }) => {
   const [content, setContent] = useState('')
   const dispatch = useDispatch()
   const submitHandler = () => {
+    if (!content.trim()) {
+      alert('Please enter a review.')
+      return
+    }
     if (mediaDetail && mediaType) {
       const data = {
         token,
         content,
         mediaType,
         mediaId: mediaDetail?.id,
-        mediaTitle: mediaDetail?.original_title,
+        mediaTitle: mediaDetail?.original_title || mediaDetail?.name,
         mediaPoster: mediaDetail?.poster_path,
         mediaRate: mediaDetail?.vote_average,
       }
