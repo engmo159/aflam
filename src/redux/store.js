@@ -10,6 +10,7 @@ import { personDetailsReducer } from './slices/personDetailsSlice'
 import { userAuthReducer } from './slices/userAuthSlice'
 import { tokenReducer } from './slices/tokenSlice'
 import { favoriteReducer } from './slices/favoriteSlice'
+import { reviewReducer } from './slices/reviewSlice'
 
 //persist reducer config
 const persistConfig = {
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   personDetailsReducer,
   userAuthReducer,
   favoriteReducer,
+  reviewReducer,
 })
 // default reducer + persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
