@@ -16,11 +16,14 @@ import { useEffect } from "react";
 import { setToken } from "./redux/slices/tokenSlice";
 import { getUserInfo } from "./redux/slices/userAuthSlice";
 
+
 import "react-toastify/dist/ReactToastify.css";
 import Favorites from "./components/userProfile/Favorites";
 import Reviews from "./components/userProfile/Reviews";
 import PasswordUpdate from "./components/userProfile/PasswordUpdate";
 import NotFound from "./pages/NotFound";
+import SeasonDetails from './components/mediaDetails/SeasonDetails'
+
 
 const App = () => {
   const { theme } = useSelector((state) => state.themeReducer);
@@ -50,9 +53,14 @@ const App = () => {
       <NavBar />
 
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/movie" element={<Movies />} />
         <Route path="/:mediaType/:mediaId" element={<MediaDetails />} />
+         <Route
+          path='/:mediaType/:mediaId/season/:season_number'
+          element={<SeasonDetails />}
+        />
         <Route path="/person/:personId" element={<PersonDetails />} />
         <Route path="/tv" element={<Tv />} />
         <Route path="/search" element={<Search />} />
@@ -60,6 +68,7 @@ const App = () => {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/password-update" element={<PasswordUpdate />} />
         <Route path="/*" element={<NotFound />} />
+
       </Routes>
       <Footer />
       {!pageLoading && <GoToTop />}
