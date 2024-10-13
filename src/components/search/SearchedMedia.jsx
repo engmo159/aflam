@@ -40,7 +40,9 @@ const SearchedMedia = () => {
                 getSearchedMedia({
                   mediaType,
                   query,
+
                   page: searchedMoviesPage + 1,
+
                 })
               )
             }}
