@@ -73,6 +73,7 @@ const initialState = {
   deleteReviewLoading: false,
   deleteReviewErr: null,
   isDeletingReview: [],
+  totalReviewPages: 0,
 }
 const reviewSlice = createSlice({
   name: 'review',
@@ -87,7 +88,6 @@ const reviewSlice = createSlice({
       state.reviewData = action.payload
       state.isDeletingReview = new Array(action.payload.length).fill(false)
     },
-
   },
   extraReducers: builder => {
     // get user reviews
@@ -136,4 +136,3 @@ const reviewSlice = createSlice({
 export const reviewReducer = reviewSlice.reducer
 
 export const { setDeletingReviewsLoading, setReviews } = reviewSlice.actions
-
