@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { Button } from '@material-tailwind/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BarLoader } from 'react-spinners'
