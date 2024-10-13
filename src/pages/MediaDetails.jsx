@@ -20,12 +20,12 @@ import SliderLayout from '../components/mediaDetails/SliderLayout'
 import { SwiperSlide } from 'swiper/react'
 import VideoSlider from '../components/mediaDetails/VideoSlider'
 
-import PosterLayout from '../components/mediaDetails/PosterLayout'
+// import PosterLayout from '../components/mediaDetails/PosterLayout'
 import ReviewSection from '../components/mediaDetails/ReviewSection'
 
 import RecommendedSwiper from '../components/mediaDetails/RecommendedSwiper'
 import Seasons from '../components/mediaDetails/Seasons'
-import { Typography } from '@material-tailwind/react'
+// import { Typography } from '@material-tailwind/react'
 import MovieCollection from '../components/mediaDetails/MovieCollection'
 
 const MediaDetails = () => {
@@ -33,7 +33,7 @@ const MediaDetails = () => {
   const {
     videoDetail,
     mediaDetailLoading,
-    posterDetail,
+    // posterDetail,
     backdropDetail,
     recommendedDetails,
     mediaDetail,
