@@ -28,7 +28,7 @@ const Favorites = () => {
   }, [token])
 
   if (pageLoading) {
-    return <Loading load={''} />
+    return <Loading load={""} />;
   }
 
   return (
@@ -36,12 +36,11 @@ const Favorites = () => {
       {favoriteErr && <p className='text-red-600'>{favoriteErr}</p>}
       <div className='flex flex-col gap-2'>
         <Typography
-          variant='h4'
-          className='uppercase text-black dark:text-white'
-        >
-          My favorites ({favoriteData?.length})
+          variant="h4"
+          className="uppercase text-black dark:text-white">
+          My favorites ({favoriteData?.length ? favoriteData?.length : 0})
         </Typography>
-        <div className='h-1.5 bg-ourRed w-[10%]' />
+        <div className="h-1.5 bg-ourRed w-[10%]" />
       </div>
       {favoriteData?.length > 0 && (
         <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2'>
@@ -90,7 +89,7 @@ const Favorites = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Favorites
+export default Favorites;

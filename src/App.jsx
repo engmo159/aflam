@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Favorites from './components/userProfile/Favorites'
 import Reviews from './components/userProfile/Reviews'
 import PasswordUpdate from './components/userProfile/PasswordUpdate'
+import NotFound from './pages/NotFound'
 import SeasonDetails from './components/mediaDetails/SeasonDetails'
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/reviews' element={<Reviews />} />
         <Route path='/password-update' element={<PasswordUpdate />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
       <Footer />
       {!pageLoading && <GoToTop />}
