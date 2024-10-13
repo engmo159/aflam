@@ -31,6 +31,7 @@ const initialState = {
   mediaType: 'movie',
   query: '',
   searchedMoviesPage: 1,
+  searchedMediaTotalPages: 0,
 }
 const SearchSlice = createSlice({
   name: 'Search',
@@ -63,6 +64,7 @@ const SearchSlice = createSlice({
     builder.addCase(getSearchedMedia.fulfilled, (state, { payload }) => {
       state.searchedMoviesLoading = false
       state.searchedMedia = state.searchedMedia.concat(payload.results)
+      state.searchedMediaTotalPages = payload.total_pages
     })
 
     builder.addCase(getSearchedMedia.rejected, (state, action) => {
