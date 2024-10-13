@@ -8,6 +8,7 @@ import {
   deleteFavoriteMedia,
   getFavoriteMedia,
 } from '../../redux/slices/favoriteSlice'
+import { switchShowSignInModal } from '../../redux/slices/userAuthSlice'
 
 const FavoritesButton = ({ mediaId, mediaType }) => {
   const { token } = useSelector(state => state.tokenReducer)
@@ -70,7 +71,9 @@ const FavoritesButton = ({ mediaId, mediaType }) => {
   return (
     <button
       className='flex w-max gap-2 items-center justify-center font-normal text-red-800'
-      onClick={handleFavoriteToggle} // No need for arrow function here
+      onClick={() => {
+        token ? handleFavoriteToggle() : dispatch(switchShowSignInModal())
+      }}
     >
       {addFavoriteLoading || deleteFavoriteLoading || favoriteLoading ? (
         <span className='btnLoader'></span>
