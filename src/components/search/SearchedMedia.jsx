@@ -40,7 +40,9 @@ const SearchedMedia = () => {
                 getSearchedMedia({
                   mediaType,
                   query,
-                  page: searchedMoviesPage + 1, // Increment page for the next request
+
+                  page: searchedMoviesPage + 1,
+
                 })
               )
             }}

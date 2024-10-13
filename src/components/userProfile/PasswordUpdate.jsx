@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
 import { useEffect } from 'react'
@@ -75,7 +74,6 @@ const PasswordUpdate = () => {
   const submitHandler = async data => {
     try {
       dispatch(changePasswordFunction({ ...data, token }))
-      // console.log({ ...data, token })
     } catch (error) {
       toast.error(error || 'Error changing password. Please try again.')
     }
@@ -188,7 +186,6 @@ const PasswordUpdate = () => {
       </form>
     </div>
   )
-
 }
 
 export default PasswordUpdate
