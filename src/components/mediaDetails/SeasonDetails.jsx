@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Loading from '../Loading'
@@ -29,24 +29,24 @@ const SeasonDetails = () => {
     return <Loading load={seasonDetailsLoading} />
   }
   return (
-    <div className='pt-[10%] lg:p-[5%] flex flex-col gap-8'>
+    <div className='pt-[10%] px-[3%] lg:p-[5%] flex flex-col gap-4 lg:gap-8'>
       {seasonDetailsErr && <h1 className='text-red-900'>seasonDetailsErr</h1>}
       {/* hero  */}
-      <div className='flex justify-center  gap-12'>
-        <img loading='lazy' src={poster || ''} />
-        <div className='flex flex-col gap-6'>
+      <div className='flex flex-col-reverse xl:flex-row justify-center  gap-12'>
+        {/* <img  loading='lazy' src={poster || ''} /> */}
+        <div className='flex flex-col gap-2 lg:gap-6'>
           {/* header  */}
 
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col  lg:gap-6'>
             <Typography variant='h2'>{seasonDetails?.name || ''}</Typography>
             <div className='h-2 w-32 bg-red-900' />
           </div>
           {/* Rating */}
-          <div className='lg:w-12 lg:h-12 md:w-24 md:h-24'>
+          <div className='lg:w-12 lg:h-12 md:w-10 md:h-10 flex justify-center items-center'>
             <RadialRatingBar movie={seasonDetails} />
           </div>
 
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2 lg:gap-4'>
             <Typography variant='h5' className='text-black dark:text-green-600'>
               Release Date: {seasonDetails?.air_date || ''}
             </Typography>
