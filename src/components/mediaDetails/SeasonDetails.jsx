@@ -33,7 +33,9 @@ const SeasonDetails = () => {
       {seasonDetailsErr && <h1 className='text-red-900'>seasonDetailsErr</h1>}
       {/* hero  */}
       <div className='flex flex-col-reverse xl:flex-row justify-center  gap-12'>
+
         <img loading='lazy' src={poster || ''} />
+
         <div className='flex flex-col gap-2 lg:gap-6'>
           {/* header  */}
 
