@@ -8,7 +8,7 @@ const EpisodeCard = ({ episode }) => {
     ? `https://image.tmdb.org/t/p/w500${episode?.still_path}`
     : `https://via.placeholder.com/500x250?text=No+Image+Available`
   return (
-    <div className='flex flex-col-reverse lg:flex-row gap-6 p-4 rounded transition-all bg-blue-gray-500 lg:bg-black hover:bg-blue-gray-500'>
+    <div className='flex flex-col-reverse lg:flex-row gap-6 p-4 rounded transition-all bg-blue-gray-500 lg:bg-white lg:dark:bg-black hover:bg-blue-gray-500'>
       <img loading='lazy' src={poster} />
       <div className='flex flex-col gap-6'>
         <div className='flex justify-around lg:justify-evenly items-center'>
