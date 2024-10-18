@@ -56,7 +56,7 @@ const ReviewSection = ({ mediaType }) => {
             />
           ))}
       </div>
-      {reviewsDetails?.length > 0 && (
+      {reviewsDetails?.length > reviewsDetailsVisible && (
         <Button
           onClick={() => dispatch(reviewDetailsLoadMore())}
           className="flex justify-center lg:col-span-4 md:col-span-2 col-span-1 bg-transparent shadow-none text-red-600 text-md hover:shadow-none rounded-sm font-bold">
@@ -67,7 +67,7 @@ const ReviewSection = ({ mediaType }) => {
           )}
         </Button>
       )}
-      <hr className="border-1 py-3 border-gray-800" />
+      <hr className='border-1 py-3 border-gray-800' />
       {token && <AddReview mediaType={mediaType} />}
     </div>
   );

@@ -34,7 +34,7 @@ const AddReview = ({ mediaType }) => {
     }
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div className='flex flex-col gap-4'>
       {/* user name  */}
       <div className="flex gap-3 items-center">
         <div className="bg-[#9d0a00] text-white min-w-10 h-10 flex justify-center items-center rounded-full">
@@ -56,19 +56,21 @@ const AddReview = ({ mediaType }) => {
         {/* text aria  */}
         <div className="relative w-full min-w-[150px]">
           <textarea
-            className="block resize-none p-2.5 w-full text-md text-gray-900 focus-visible:outline-none focus-within:border-2 focus:border-ourRed rounded-md border-2 border-gray-300 hover:border-gray-500 dark:focus:border-ourRed dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-            placeholder="Write your review"
-            rows="6"
-            onChange={(e) => setContent(e.target.value)}
-            value={content}></textarea>
+            className='block resize-none p-2.5 w-full text-md text-gray-900 focus-visible:outline-none focus-within:border-2 focus:border-ourRed rounded-md border-2 border-gray-300 hover:border-gray-500 dark:focus:border-ourRed dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white '
+            placeholder='Write your review'
+            rows='6'
+            onChange={e => setContent(e.target.value)}
+            value={content}
+          ></textarea>
         </div>
 
         {/* post button  */}
 
         <Button
-          className="w-fit text-md bg-ourRed"
-          onClick={() => submitHandler()}>
-          <div className="flex gap-2 items-center font-normal">
+          className='w-fit text-md bg-ourRed'
+          onClick={() => submitHandler()}
+        >
+          <div className='flex gap-2 items-center font-normal'>
             {addReviewLoading ? (
               <span className="btnLoader"></span>
             ) : (

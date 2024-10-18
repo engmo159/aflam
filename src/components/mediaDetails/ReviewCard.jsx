@@ -25,7 +25,8 @@ const ReviewCard = ({ review, userProps }) => {
   }
 
   return (
-    <div className='flex justify-between items-center hover:bg-gray-50 p-4 rounded'>
+    <div className='flex justify-between items-center hover:bg-gray-5e00 p-4 rounded'>
+
       <div className='flex gap-3 '>
         <div className='bg-[#9d0a00] text-white min-w-10 h-10 flex justify-center items-center rounded-full'>
           {review.author_details.name
