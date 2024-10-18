@@ -123,7 +123,7 @@ const NavBar = () => {
               <img
                 src={logo}
                 alt="Description of image"
-                className="w-fit h-6"
+                className="lg:w-fit md:w-fit w-28 h-6"
               />
             </Link>
 

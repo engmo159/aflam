@@ -9,7 +9,7 @@ const Footer = () => {
         <Link
           to="/"
           className="mr-4 cursor-pointer py-1.5 font-bold text-2xl text-black dark:text-white">
-          <img src={logo} alt="Description of image" className="w-fit h-6" />
+          <img src={logo} alt="Description of image" className="lg:w-fit md:w-fit w-28 h-6" />
         </Link>
         <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
           <li>
